@@ -42,7 +42,7 @@ extern int16_t motor1_currnt;
 extern PID pid_dipan3508;
 RC_Ctl_t RC_Ctl;   					//声明遥控器数据结构体
 uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
-extern int16_t dipan_speedtarget[4];
+extern float dipan_speedtarget[4];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

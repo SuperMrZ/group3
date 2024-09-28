@@ -32,7 +32,7 @@ extern 	RC_Ctl_t RC_Ctl;
 
  extern uint8_t sbus_rx_buffer[18];//声明遥控器接收缓存数组
 
-extern int16_t dipan_speedtarget[4];
+extern float dipan_speedtarget[4];
 void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl);
 
 
