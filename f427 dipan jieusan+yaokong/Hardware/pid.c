@@ -3,7 +3,7 @@
 typedef struct
 {
 //p,i,d参数值,maxI积分限幅，maxO输出限幅
-int16_t kp;
+float kp;
 float ki;
 int16_t kd;
 int16_t maxI;  //maxI积分限幅
@@ -15,7 +15,7 @@ int16_t maxO;  //maxO输出限幅
 
 
 //不同电机的pid参数
- PID pid_dipan3508={5,0.1,0,0x500,0x2000};
+ PID pid_dipan3508={5,0.15,0,0x1000,0x5000};
 extern PID pid_dipan3508;
 
 
