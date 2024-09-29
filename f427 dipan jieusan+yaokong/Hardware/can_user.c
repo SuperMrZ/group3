@@ -123,7 +123,7 @@ void CAN_cmd_current_3508motor(int16_t motor1, int16_t motor2, int16_t motor3, i
 
 
 
-void CAN_cmd_speed_3508motor(float target[4], motor_recieve motor_recieve_info[4])
+void CAN_cmd_speed_3508motor(int16_t target[4], motor_recieve motor_recieve_info[4])
 {
 	
 	int16_t motor_currnt[4];

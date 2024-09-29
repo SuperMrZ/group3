@@ -33,7 +33,7 @@ extern 	RC_Ctl_t RC_Ctl;
 extern uint8_t sbus_rx_buffer[18];//声明遥控器接收缓存数组
 
 
-float dipan_speedtarget[4];
+int16_t dipan_speedtarget[4];
 int16_t dipan_x_speed,dipan_y_speed,dipan_z_speed;//底盘前后，左右，自旋速度
 	
 void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
@@ -59,8 +59,8 @@ void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
 
 	dipan_speedtarget[0] = 3*(a1*-dipan_y_speed - a2*dipan_x_speed - a3*dipan_z_speed);//右前
 	dipan_speedtarget[1] = 3*(a1*dipan_y_speed  - a2*dipan_x_speed - a3*dipan_z_speed);//左前
-	dipan_speedtarget[2] = (float)0.7368*3*(-a1*dipan_y_speed  + a2*dipan_x_speed - a3*dipan_z_speed);//右后
-	dipan_speedtarget[3] = 0.7368*3*(-a1*-dipan_y_speed + a2*dipan_x_speed - a3*dipan_z_speed);//左后
+	dipan_speedtarget[2] = 3*(-a1*dipan_y_speed  + a2*dipan_x_speed - a3*dipan_z_speed);//右后
+	dipan_speedtarget[3] = 3*(-a1*-dipan_y_speed + a2*dipan_x_speed - a3*dipan_z_speed);//左后
 
 
 	
