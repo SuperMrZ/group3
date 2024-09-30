@@ -183,12 +183,17 @@
         <Ww>
           <count>1</count>
           <WinNumber>2</WinNumber>
-          <ItemText>motor_currnt</ItemText>
+          <ItemText>motor_recieve_dipan3508,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>2</WinNumber>
-          <ItemText>motor_recieve_dipan3508,0x0A</ItemText>
+          <ItemText>motor_recieve_yuntai6020</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>motor_currnt</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>
@@ -197,7 +202,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>0</aLwin>
+        <aLwin>1</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>

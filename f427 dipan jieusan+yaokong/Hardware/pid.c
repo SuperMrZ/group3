@@ -17,7 +17,8 @@ int16_t maxO;  //maxO输出限幅
 //不同电机的pid参数
  PID pid_dipan3508={5,0.15,0,0x1000,0x5000};
 extern PID pid_dipan3508;
-
+ PID pid_yuntai6020={5,1,0,0x3000,0x5000};
+extern PID pid_yuntai6020;
 
 /**
   * @brief  pid_output此函数用于输出一个pid输出

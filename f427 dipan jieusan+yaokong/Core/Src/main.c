@@ -38,7 +38,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 motor_recieve motor_recieve_dipan3508[4];
-extern int16_t motor1_currnt;
+motor_recieve motor_recieve_yuntai6020[2];
 extern PID pid_dipan3508;
 RC_Ctl_t RC_Ctl;   					//声明遥控器数据结构体
 uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
@@ -109,7 +109,7 @@ int main(void)
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
-	
+	int16_t target[2]={50,300};
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,10 +119,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  
 
 	 dipan_speed_jiesuan(RC_Ctl);	
-	 // int16_t target[4]={TongDao0*6,0x500,100,100};
-	  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
+
+	  CAN_cmd_speed_6020motor(target,motor_recieve_yuntai6020);
+	//  CAN_cmd_current_6020motor(500,500,500,500);
+
+	 // CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
 	 HAL_Delay(1);
   }
