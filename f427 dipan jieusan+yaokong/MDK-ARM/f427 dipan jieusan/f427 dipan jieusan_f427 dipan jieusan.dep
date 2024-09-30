@@ -34,7 +34,7 @@ I (../Core/Inc/can.h)(0x66F9F6BC)
 I (../Core/Inc/main.h)(0x66FA596F)
 I (..\Hardware\pid.h)(0x66FA61A0)
 F (..\Hardware\can_user.h)(0x66FA5C08)()
-F (..\Hardware\pid.c)(0x66FA67BD)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware --cpp-I.\RTE\_f427_dipan_jieusan-ID:\keli5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keli5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o "f427 dipan jieusan\pid.o" --omf_browse "f427 dipan jieusan\pid.crf" --depend "f427 dipan jieusan\pid.d")
+F (..\Hardware\pid.c)(0x66FA6998)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware --cpp-I.\RTE\_f427_dipan_jieusan-ID:\keli5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keli5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o "f427 dipan jieusan\pid.o" --omf_browse "f427 dipan jieusan\pid.crf" --depend "f427 dipan jieusan\pid.d")
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x66F9F6BD)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h)(0x66F9F6BD)
 I (../Drivers/CMSIS/Include/core_cm4.h)(0x66F9F6BD)
@@ -131,6 +131,37 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x66F9F6BD)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x66F9F6BD)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x66F9F6BD)
 F (.\dipan_gensui.h)(0x66FA596F)()
+F (..\Hardware\yaokong.c)(0x66FA6AB1)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware --cpp-I.\RTE\_f427_dipan_jieusan-ID:\keli5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keli5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o "f427 dipan jieusan\yaokong.o" --omf_browse "f427 dipan jieusan\yaokong.crf" --depend "f427 dipan jieusan\yaokong.d")
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x66F9F6BD)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h)(0x66F9F6BD)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x66F9F6BD)
+I (D:\keli5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x66F9F6BD)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x66F9F6BD)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x66F9F6BD)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x66F9F6BD)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66F9F6BD)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x66F9F6BC)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x66F9F6BD)
+I (D:\keli5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x66F9F6BD)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x66F9F6BD)
+F (..\Hardware\yaokong.h)(0x66FA6AB1)()
 F (../Core/Src/main.c)(0x66FA6265)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware --cpp-I.\RTE\_f427_dipan_jieusan-ID:\keli5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keli5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o "f427 dipan jieusan\main.o" --omf_browse "f427 dipan jieusan\main.crf" --depend "f427 dipan jieusan\main.d")
 I (../Core/Inc/main.h)(0x66FA596F)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66F9F6BD)

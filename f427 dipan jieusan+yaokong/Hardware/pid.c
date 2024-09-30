@@ -40,8 +40,7 @@ int16_t pid_output(PID pid, int16_t feedback,int16_t target)
 	
 	int16_t pout = pid.kp * error_now;
 	
-	
-	        iout += pid.ki * error_now;
+	       iout += pid.ki * error_now;
 	if (iout > pid.maxI)
 	{
 		iout = pid.maxI;

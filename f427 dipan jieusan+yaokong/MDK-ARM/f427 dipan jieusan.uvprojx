@@ -440,6 +440,16 @@
               <FileType>5</FileType>
               <FilePath>.\dipan_gensui.h</FilePath>
             </File>
+            <File>
+              <FileName>yaokong.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\yaokong.c</FilePath>
+            </File>
+            <File>
+              <FileName>yaokong.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\yaokong.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

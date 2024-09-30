@@ -29,5 +29,3 @@ f427 dipan jieusan\yaokong.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_
 f427 dipan jieusan\yaokong.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 f427 dipan jieusan\yaokong.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 f427 dipan jieusan\yaokong.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-f427 dipan jieusan\yaokong.o: ../Core/Inc/usart.h
-f427 dipan jieusan\yaokong.o: ../Core/Inc/main.h
