@@ -10,14 +10,17 @@
 {
 	uint16_t motor_id;
 	uint16_t angle;
-    int16_t speed;
+  uint16_t speed;
     
 }motor_recieve;
 
 extern motor_recieve motor_recieve_dipan3508[4];
+extern motor_recieve motor_recieve_yuntai6020[2];
+extern motor_recieve motor_recieve_bodan2006;
+
 extern PID pid_dipan3508;
-
-
+extern PID pid_yuntai6020;
+extern PID pid_bodan2006;
 
 
 /**
@@ -76,10 +79,20 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
     HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &rx_header, rx_data);
     // 成功接收到CAN消息
     // 在这里解析并存储接收到的数据
-	int16_t i =rx_header.StdId -0x201;
-	motor_recieve_dipan3508[i].motor_id=rx_header.StdId;
-	motor_recieve_dipan3508[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
-    motor_recieve_dipan3508[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
+	if(rx_header.StdId < 0x205)
+	{
+		int16_t i =rx_header.StdId -0x201;
+		motor_recieve_dipan3508[i].motor_id=rx_header.StdId;
+		motor_recieve_dipan3508[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
+		motor_recieve_dipan3508[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
+	}
+	else if(rx_header.StdId >= 0x205)
+	{
+		int16_t i =rx_header.StdId -0x205;
+		motor_recieve_yuntai6020[i].motor_id=rx_header.StdId;
+		motor_recieve_yuntai6020[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
+		motor_recieve_yuntai6020[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
+	}
    // 可以根据具体情况解析更多数据字段
     HAL_GPIO_WritePin(GPIOF,GPIO_PIN_14,GPIO_PIN_RESET);
     
@@ -111,8 +124,28 @@ void CAN_cmd_current_3508motor(int16_t motor1, int16_t motor2, int16_t motor3, i
     chassis_can_send_data[7] = motor4;
  
     HAL_CAN_AddTxMessage(&hcan1, &chassis_tx_message, chassis_can_send_data, &send_mail_box);
+	
 }
 
+//void CAN_cmd_current_2006motor(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
+//{
+//    uint32_t send_mail_box;
+//    chassis_tx_message.StdId = 0x200;//查阅C620手册，ID为1-4时发送标识为0x200
+//    chassis_tx_message.IDE = CAN_ID_STD;
+//    chassis_tx_message.RTR = CAN_RTR_DATA;
+//    chassis_tx_message.DLC = 0x08;
+//    chassis_can_send_data[0] = motor1 >> 8; //id1电机 设置电流值高8位
+//    chassis_can_send_data[1] = motor1;      //id1电机 设置电流值低8位
+//    chassis_can_send_data[2] = motor2 >> 8; //id2电机 设置电流值高8位
+//    chassis_can_send_data[3] = motor2;      //id2电机 设置电流值低8位
+//    chassis_can_send_data[4] = motor3 >> 8;
+//    chassis_can_send_data[5] = motor3;
+//    chassis_can_send_data[6] = motor4 >> 8;
+//    chassis_can_send_data[7] = motor4;
+// 
+//    HAL_CAN_AddTxMessage(&hcan1, &chassis_tx_message, chassis_can_send_data, &send_mail_box);
+//	
+//}
 
 
 /**
@@ -137,4 +170,118 @@ void CAN_cmd_speed_3508motor(int16_t target[4], motor_recieve motor_recieve_info
 
 }
 
+void CAN_cmd_speed_2006motor(int16_t target, motor_recieve motor_recieve_info)
+{
+	
+	int16_t motor_currnt[4];
+	
+	for (uint16_t i = 0; i < 4; i++) 
+	{
+    motor_currnt[i] = pid_output(pid_dipan3508, motor_recieve_info.speed, target);
+    }
 
+	CAN_cmd_current_3508motor(motor_currnt[0],0,0,0);
+
+}
+
+/**
+  * @brief  CAN_cmd_6020motor此函数用于控制云台四个6020电机的输入电流
+  * @param  motor1-4指的是你想指定相应电机的电流输入值，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+static CAN_TxHeaderTypeDef  yuntai_tx_message;//发送数据的数据头
+static uint8_t              yuntai_can_send_data[8];//要发送的数据数组
+void CAN_cmd_current_6020motor(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
+{
+    uint32_t send_mail_box;
+    yuntai_tx_message.StdId = 0x1FE;//查阅C620手册，ID为1-4时发送标识为0x200
+    yuntai_tx_message.IDE = CAN_ID_STD;
+    yuntai_tx_message.RTR = CAN_RTR_DATA;
+    yuntai_tx_message.DLC = 0x08;
+    yuntai_can_send_data[0] = motor1 >> 8; //id1电机 设置电流值高8位
+    yuntai_can_send_data[1] = motor1;      //id1电机 设置电流值低8位
+    yuntai_can_send_data[2] = motor2 >> 8; //id2电机 设置电流值高8位
+    yuntai_can_send_data[3] = motor2;      //id2电机 设置电流值低8位
+    yuntai_can_send_data[4] = motor3 >> 8;
+    yuntai_can_send_data[5] = motor3;
+    yuntai_can_send_data[6] = motor4 >> 8;
+    yuntai_can_send_data[7] = motor4;
+ 
+    HAL_CAN_AddTxMessage(&hcan1, &yuntai_tx_message, yuntai_can_send_data, &send_mail_box);
+}
+
+/**
+  * @brief  CAN_cmd_speed_3508motor此函数用于控制底盘四个35098电机的速度
+  * @param  motor1-4指的是你想指定相应电机的速度输出，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+
+int16_t motor_currnt[2];
+
+void CAN_cmd_speed_6020motor(int16_t target[2], motor_recieve motor_recieve_info[2])
+{
+	
+	
+	
+	for (uint16_t i = 0; i < 2; i++) 
+	{
+    motor_currnt[i] = pid_output(pid_yuntai6020, motor_recieve_info[i].speed, target[i]);
+    }
+
+	CAN_cmd_current_6020motor(motor_currnt[0],motor_currnt[1],0,0);
+
+}
+
+
+void CAN_cmd_angle_6020motor(int16_t target[2], motor_recieve motor_recieve_info[2])
+{
+	
+	int16_t motor_speed[2];
+	
+	for (uint16_t i = 0; i < 2; i++) 
+	{
+		
+		//角度过零处理begin
+		int16_t cur;
+		cur=motor_recieve_info[i].angle;
+		if(target[i]-cur > 4096)
+		{
+			cur +=8192;
+		}
+		else if (target[i] - cur < -4096)
+		{
+			cur = cur -8192;
+		}
+		//角度过零处理end
+		motor_speed[i] = pid_output( pid_yuntai6020_angle, cur, target[i]);
+    }
+
+		CAN_cmd_speed_6020motor(motor_speed,motor_recieve_yuntai6020);
+
+}
+
+
+
+void CAN_cmd_angle_2006motor(int16_t target, motor_recieve motor_recieve_info)
+{
+	
+		int16_t motor_speed;
+	
+		//角度过零处理begin
+		int16_t cur;
+		cur=motor_recieve_info.angle;
+		if(target-cur > 4096)
+		{
+			cur +=8192;
+		}
+		else if (target - cur < -4096)
+		{
+			cur = cur -8192;
+		}
+		//角度过零处理end
+		motor_speed = pid_output( pid_bodan2006_angle, cur, target);
+    
+		CAN_cmd_speed_2006motor(motor_speed,motor_recieve_bodan2006);
+		
+
+}

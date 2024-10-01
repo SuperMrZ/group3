@@ -5,7 +5,7 @@ typedef struct
 //p,i,d参数值,maxI积分限幅，maxO输出限幅
 float kp;
 float ki;
-int16_t kd;
+float kd;
 int16_t maxI;  //maxI积分限幅
 int16_t maxO;  //maxO输出限幅
 
@@ -17,7 +17,16 @@ int16_t maxO;  //maxO输出限幅
 //不同电机的pid参数
  PID pid_dipan3508={5,0.15,0,0x1000,0x5000};
 extern PID pid_dipan3508;
-
+ 
+  PID pid_yuntai6020={30,0,0,30000,30000};
+extern PID pid_yuntai6020;
+ PID pid_yuntai6020_angle={400,0,0,0,320};
+extern PID pid_yuntai6020_angle;
+ 
+	PID pid_bodan2006={5,0,0,300,500};
+extern PID pid_bodan2006;
+ PID pid_bodan2006_angle={5,0,0,300,500};
+extern PID pid_bodan2006_angle;
 
 /**
   * @brief  pid_output此函数用于输出一个pid输出
@@ -27,20 +36,20 @@ extern PID pid_dipan3508;
   */
   
 
-
-
+int16_t iout = 0; 
+int16_t error_now = 0;
+int16_t error_last = 0;
+ 
 int16_t pid_output(PID pid, int16_t feedback,int16_t target) 
 {
 	
-	int16_t error_now = 0;
-	int16_t error_last = 0;
+
 	error_last = error_now;
 	error_now = target - feedback;
 	
 	int16_t pout = pid.kp * error_now;
 	
-	int16_t iout = 0;  
-	        iout += pid.ki * error_now;
+	       iout += pid.ki * error_now;
 	if (iout > pid.maxI)
 	{
 		iout = pid.maxI;

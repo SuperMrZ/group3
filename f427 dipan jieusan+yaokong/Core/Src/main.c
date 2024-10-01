@@ -28,6 +28,8 @@
 #include "can_user.h"
 #include "pid.h"
 #include "dipan_control.h"
+#include "yaokong.h"
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,8 +39,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+//电机返回的结构体 数组
 motor_recieve motor_recieve_dipan3508[4];
-extern int16_t motor1_currnt;
+motor_recieve motor_recieve_yuntai6020[2];
+motor_recieve motor_recieve_bodan2006;
+
 extern PID pid_dipan3508;
 RC_Ctl_t RC_Ctl;   					//声明遥控器数据结构体
 uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
@@ -59,6 +64,8 @@ extern int16_t dipan_speedtarget[4];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+void Update_Angle(void);
+
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
@@ -109,7 +116,12 @@ int main(void)
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
+	int16_t target[2]={50,1000};
 	
+	int16_t flag_shoot = 0;
+	int16_t test_2006angle = 400 ;
+	int16_t test_last_2006angle = 0 ;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,10 +131,42 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  
 
-	 dipan_speed_jiesuan(RC_Ctl);	
-	 // int16_t target[4]={TongDao0*6,0x500,100,100};
-	  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
+		//dipan_speed_jiesuan(RC_Ctl);	
+    //CAN_cmd_angle_6020motor(target,motor_recieve_yuntai6020);
+		CAN_cmd_angle_2006motor(test_2006angle,motor_recieve_bodan2006);
+//		if(RC_Ctl.rc.s2 == 3)
+//		{
+//			flag_shoot = 0;
+//		}
+//		
+//		if(RC_Ctl.rc.s2 == 2 && flag_shoot == 0)
+//		{
+//		 test_last_2006angle = test_2006angle;
+//		 test_2006angle += 50;
+//			
+////			if(abs(test_2006angle - test_last_2006angle) > 4095)
+////			{
+////			}
+//			
+////			while(((float)test_2006angle - motor_recieve_bodan2006.angle)>1.0 ||((float)test_2006angle - motor_recieve_bodan2006.angle)< -1)
+//			
+//			CAN_cmd_angle_2006motor(test_2006angle,motor_recieve_bodan2006);
+//			
+//			
+//			while(((float)test_2006angle - motor_recieve_bodan2006.angle)>1.0 ||((float)test_2006angle - motor_recieve_bodan2006.angle)< -1 )
+//			{
+//				flag_shoot = 1;
+//			}
+//			
+//		}
+//		
+		
+		
+		
+		
+	 // CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
 	 HAL_Delay(1);
   }
@@ -175,7 +219,11 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void Update_Angle(void)
+{
 
+
+}
 
 
 /* USER CODE END 4 */
