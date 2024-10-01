@@ -201,10 +201,34 @@ void CAN_cmd_angle_6020motor(int16_t target[2], motor_recieve motor_recieve_info
 {
 	
 	int16_t motor_speed[2];
+	//过零判断开始
+
+	
+	
+	//过零判断结束
 	
 	for (uint16_t i = 0; i < 2; i++) 
 	{
-    motor_speed[i] = pid_output( pid_yuntai6020_angle, motor_recieve_info[i].angle, target[i]);
+		//过零判断开始
+		int16_t cur;
+	    cur=motor_recieve_info[i].angle;
+	    if(target[i]-cur > 4096 )
+		{
+			cur += 8192;
+		}
+		else if(target[i]-cur < -4096 )
+		{
+			cur =cur -8192;
+		}
+
+	
+	
+	    //过零判断结束
+	
+		
+						
+		
+    motor_speed[i] = pid_output( pid_yuntai6020_angle, cur, target[i]);
     }
 
 	CAN_cmd_current_6020motor(motor_speed[0],motor_speed[1],0,0);

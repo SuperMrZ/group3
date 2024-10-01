@@ -110,7 +110,7 @@ int main(void)
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
-	int16_t target[2]={50,1000};
+	int16_t target[2]={50,10};
   /* USER CODE END 2 */
 
   /* Infinite loop */

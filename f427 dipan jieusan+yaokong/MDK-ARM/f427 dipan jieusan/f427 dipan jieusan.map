@@ -1647,18 +1647,18 @@ Image Symbol Table
     UART_DMAReceiveCplt(__DMA_HandleTypeDef*) 0x08002879   Thumb Code   180  stm32f4xx_hal_uart.o(i._Z19UART_DMAReceiveCpltP19__DMA_HandleTypeDef)
     i._Z19dipan_speed_jiesuan8RC_Ctl_t       0x0800292c   Section        0  dipan_control.o(i._Z19dipan_speed_jiesuan8RC_Ctl_t)
     i._Z23CAN_cmd_angle_6020motorPsP13motor_recieve 0x08002a34   Section        0  can_user.o(i._Z23CAN_cmd_angle_6020motorPsP13motor_recieve)
-    i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef 0x08002a8c   Section        0  stm32f4xx_hal_dma.o(i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef)
-    DMA_CalcBaseAndBitshift(__DMA_HandleTypeDef*) 0x08002a8d   Thumb Code    46  stm32f4xx_hal_dma.o(i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef)
-    i._Z25CAN_cmd_current_6020motorssss      0x08002ac0   Section        0  can_user.o(i._Z25CAN_cmd_current_6020motorssss)
-    i._Z26__NVIC_GetPriorityGroupingv        0x08002b10   Section        0  stm32f4xx_hal_cortex.o(i._Z26__NVIC_GetPriorityGroupingv)
-    __NVIC_GetPriorityGrouping()             0x08002b11   Thumb Code    10  stm32f4xx_hal_cortex.o(i._Z26__NVIC_GetPriorityGroupingv)
-    i.main                                   0x08002b20   Section        0  main.o(i.main)
-    x$fpl$fpinit                             0x08002bac   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x08002bac   Number         0  fpinit.o(x$fpl$fpinit)
-    .constdata                               0x08002bb8   Section        4  main.o(.constdata)
-    .constdata                               0x08002bbc   Section        8  stm32f4xx_hal_dma.o(.constdata)
-    flagBitshiftOffset                       0x08002bbc   Data           8  stm32f4xx_hal_dma.o(.constdata)
-    .constdata                               0x08002bc4   Section       24  system_stm32f4xx.o(.constdata)
+    i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef 0x08002ab4   Section        0  stm32f4xx_hal_dma.o(i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef)
+    DMA_CalcBaseAndBitshift(__DMA_HandleTypeDef*) 0x08002ab5   Thumb Code    46  stm32f4xx_hal_dma.o(i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef)
+    i._Z25CAN_cmd_current_6020motorssss      0x08002ae8   Section        0  can_user.o(i._Z25CAN_cmd_current_6020motorssss)
+    i._Z26__NVIC_GetPriorityGroupingv        0x08002b38   Section        0  stm32f4xx_hal_cortex.o(i._Z26__NVIC_GetPriorityGroupingv)
+    __NVIC_GetPriorityGrouping()             0x08002b39   Thumb Code    10  stm32f4xx_hal_cortex.o(i._Z26__NVIC_GetPriorityGroupingv)
+    i.main                                   0x08002b48   Section        0  main.o(i.main)
+    x$fpl$fpinit                             0x08002bd4   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x08002bd4   Number         0  fpinit.o(x$fpl$fpinit)
+    .constdata                               0x08002be0   Section        4  main.o(.constdata)
+    .constdata                               0x08002be4   Section        8  stm32f4xx_hal_dma.o(.constdata)
+    flagBitshiftOffset                       0x08002be4   Data           8  stm32f4xx_hal_dma.o(.constdata)
+    .constdata                               0x08002bec   Section       24  system_stm32f4xx.o(.constdata)
     .data                                    0x20000000   Section       20  can_user.o(.data)
     chassis_can_send_data                    0x20000000   Data           8  can_user.o(.data)
     yuntai_can_send_data                     0x20000008   Data           8  can_user.o(.data)
@@ -1948,16 +1948,16 @@ Image Symbol Table
     can_filter_init()                        0x080025fd   Thumb Code    58  can_user.o(i._Z15can_filter_initv)
     SystemClock_Config()                     0x080026e9   Thumb Code   168  main.o(i._Z18SystemClock_Configv)
     dipan_speed_jiesuan(RC_Ctl_t)            0x0800292d   Thumb Code   248  dipan_control.o(i._Z19dipan_speed_jiesuan8RC_Ctl_t)
-    CAN_cmd_angle_6020motor(short*, motor_recieve*) 0x08002a35   Thumb Code    84  can_user.o(i._Z23CAN_cmd_angle_6020motorPsP13motor_recieve)
-    CAN_cmd_current_6020motor(short, short, short, short) 0x08002ac1   Thumb Code    68  can_user.o(i._Z25CAN_cmd_current_6020motorssss)
-    main                                     0x08002b21   Thumb Code   114  main.o(i.main)
-    _fp_init                                 0x08002bad   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08002bb5   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08002bb5   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    AHBPrescTable                            0x08002bc4   Data          16  system_stm32f4xx.o(.constdata)
-    APBPrescTable                            0x08002bd4   Data           8  system_stm32f4xx.o(.constdata)
-    Region$$Table$$Base                      0x08002bdc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002bfc   Number         0  anon$$obj.o(Region$$Table)
+    CAN_cmd_angle_6020motor(short*, motor_recieve*) 0x08002a35   Thumb Code   122  can_user.o(i._Z23CAN_cmd_angle_6020motorPsP13motor_recieve)
+    CAN_cmd_current_6020motor(short, short, short, short) 0x08002ae9   Thumb Code    68  can_user.o(i._Z25CAN_cmd_current_6020motorssss)
+    main                                     0x08002b49   Thumb Code   114  main.o(i.main)
+    _fp_init                                 0x08002bd5   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08002bdd   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08002bdd   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    AHBPrescTable                            0x08002bec   Data          16  system_stm32f4xx.o(.constdata)
+    APBPrescTable                            0x08002bfc   Data           8  system_stm32f4xx.o(.constdata)
+    Region$$Table$$Base                      0x08002c04   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08002c24   Number         0  anon$$obj.o(Region$$Table)
     motor_currnt                             0x20000010   Data           4  can_user.o(.data)
     pid_dipan3508                            0x20000014   Data          16  pid.o(.data)
     pid_yuntai6020                           0x20000024   Data          16  pid.o(.data)
@@ -1989,9 +1989,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002c60, Max: 0x00200000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002c88, Max: 0x00200000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002bfc, Max: 0x00200000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002c24, Max: 0x00200000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2141,40 +2141,40 @@ Memory Map of the image
     0x08002850   0x08002850   0x00000028   Code   RO         1953    i._Z18__NVIC_SetPriority9IRQn_Typej  stm32f4xx_hal_cortex.o
     0x08002878   0x08002878   0x000000b4   Code   RO         2510    i._Z19UART_DMAReceiveCpltP19__DMA_HandleTypeDef  stm32f4xx_hal_uart.o
     0x0800292c   0x0800292c   0x00000108   Code   RO          215    i._Z19dipan_speed_jiesuan8RC_Ctl_t  dipan_control.o
-    0x08002a34   0x08002a34   0x00000058   Code   RO           15    i._Z23CAN_cmd_angle_6020motorPsP13motor_recieve  can_user.o
-    0x08002a8c   0x08002a8c   0x00000034   Code   RO         1606    i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef  stm32f4xx_hal_dma.o
-    0x08002ac0   0x08002ac0   0x00000050   Code   RO           19    i._Z25CAN_cmd_current_6020motorssss  can_user.o
-    0x08002b10   0x08002b10   0x00000010   Code   RO         1954    i._Z26__NVIC_GetPriorityGroupingv  stm32f4xx_hal_cortex.o
-    0x08002b20   0x08002b20   0x0000008c   Code   RO          357    i.main              main.o
-    0x08002bac   0x08002bac   0x0000000a   Code   RO         3049    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08002bb6   0x08002bb6   0x00000002   PAD
-    0x08002bb8   0x08002bb8   0x00000004   Data   RO          362    .constdata          main.o
-    0x08002bbc   0x08002bbc   0x00000008   Data   RO         1623    .constdata          stm32f4xx_hal_dma.o
-    0x08002bc4   0x08002bc4   0x00000018   Data   RO         2896    .constdata          system_stm32f4xx.o
-    0x08002bdc   0x08002bdc   0x00000020   Data   RO         3105    Region$$Table       anon$$obj.o
+    0x08002a34   0x08002a34   0x00000080   Code   RO           15    i._Z23CAN_cmd_angle_6020motorPsP13motor_recieve  can_user.o
+    0x08002ab4   0x08002ab4   0x00000034   Code   RO         1606    i._Z23DMA_CalcBaseAndBitshiftP19__DMA_HandleTypeDef  stm32f4xx_hal_dma.o
+    0x08002ae8   0x08002ae8   0x00000050   Code   RO           19    i._Z25CAN_cmd_current_6020motorssss  can_user.o
+    0x08002b38   0x08002b38   0x00000010   Code   RO         1954    i._Z26__NVIC_GetPriorityGroupingv  stm32f4xx_hal_cortex.o
+    0x08002b48   0x08002b48   0x0000008c   Code   RO          357    i.main              main.o
+    0x08002bd4   0x08002bd4   0x0000000a   Code   RO         3049    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08002bde   0x08002bde   0x00000002   PAD
+    0x08002be0   0x08002be0   0x00000004   Data   RO          362    .constdata          main.o
+    0x08002be4   0x08002be4   0x00000008   Data   RO         1623    .constdata          stm32f4xx_hal_dma.o
+    0x08002bec   0x08002bec   0x00000018   Data   RO         2896    .constdata          system_stm32f4xx.o
+    0x08002c04   0x08002c04   0x00000020   Data   RO         3105    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x10000000, Load base: 0x08002c60, Size: 0x00000000, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x10000000, Load base: 0x08002c88, Size: 0x00000000, Max: 0x00010000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002bfc, Size: 0x00000808, Max: 0x00030000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002c24, Size: 0x00000808, Max: 0x00030000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08002bfc   0x00000014   Data   RW           28    .data               can_user.o
-    0x20000014   0x08002c10   0x00000032   Data   RW          189    .data               pid.o
-    0x20000046   0x08002c42   0x0000000e   Data   RW          217    .data               dipan_control.o
-    0x20000054   0x08002c50   0x00000009   Data   RW         2171    .data               stm32f4xx_hal.o
-    0x2000005d   0x08002c59   0x00000003   PAD
-    0x20000060   0x08002c5c   0x00000004   Data   RW         2897    .data               system_stm32f4xx.o
+    0x20000000   0x08002c24   0x00000014   Data   RW           28    .data               can_user.o
+    0x20000014   0x08002c38   0x00000032   Data   RW          189    .data               pid.o
+    0x20000046   0x08002c6a   0x0000000e   Data   RW          217    .data               dipan_control.o
+    0x20000054   0x08002c78   0x00000009   Data   RW         2171    .data               stm32f4xx_hal.o
+    0x2000005d   0x08002c81   0x00000003   PAD
+    0x20000060   0x08002c84   0x00000004   Data   RW         2897    .data               system_stm32f4xx.o
     0x20000064        -       0x00000030   Zero   RW           27    .bss                can_user.o
     0x20000094        -       0x00000040   Zero   RW          361    .bss                main.o
     0x200000d4        -       0x00000028   Zero   RW          454    .bss                can.o
     0x200000fc        -       0x000000a8   Zero   RW          524    .bss                usart.o
     0x200001a4        -       0x00000060   Zero   RW         2979    .bss                c_w.l(libspace.o)
-    0x20000204   0x08002c60   0x00000004   PAD
+    0x20000204   0x08002c88   0x00000004   PAD
     0x20000208        -       0x00000200   Zero   RW            2    HEAP                startup_stm32f427xx.o
     0x20000408        -       0x00000400   Zero   RW            1    STACK               startup_stm32f427xx.o
 
@@ -2187,13 +2187,13 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        212         24          0          0         40       1805   can.o
-       436         40          0         20         48     695698   can_user.o
+       476         42          0         20         48     695774   can_user.o
        264         16          0         14          0     713504   dipan_control.o
         56          6          0          0          0        842   dma.o
        124          6          0          0          0        963   gpio.o
        322         34          4          0         64       3514   main.o
        160          6          0         50          0       1574   pid.o
-        64         26        428          0       1536        880   startup_stm32f427xx.o
+        64         26        428          0       1536        872   startup_stm32f427xx.o
        212         36          0          9          0       9785   stm32f4xx_hal.o
       2148          6          0          0          0      14951   stm32f4xx_hal_can.o
        312         22          0          0          0      34527   stm32f4xx_hal_cortex.o
@@ -2208,7 +2208,7 @@ Image component sizes
        164         12          0          0          0       1069   yaokong.o
 
     ----------------------------------------------------------------------
-      9918        466        496        100       1856    1511908   Object Totals
+      9958        468        496        100       1856    1511976   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          0          3          0          0   (incl. Padding)
 
@@ -2263,15 +2263,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10764        482        496        100       1956    1504872   Grand Totals
-     10764        482        496        100       1956    1504872   ELF Image Totals
-     10764        482        496        100          0          0   ROM Totals
+     10804        484        496        100       1956    1504940   Grand Totals
+     10804        484        496        100       1956    1504940   ELF Image Totals
+     10804        484        496        100          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                11260 (  11.00kB)
+    Total RO  Size (Code + RO Data)                11300 (  11.04kB)
     Total RW  Size (RW Data + ZI Data)              2056 (   2.01kB)
-    Total ROM Size (Code + RO Data + RW Data)      11360 (  11.09kB)
+    Total ROM Size (Code + RO Data + RW Data)      11400 (  11.13kB)
 
 ==============================================================================
 

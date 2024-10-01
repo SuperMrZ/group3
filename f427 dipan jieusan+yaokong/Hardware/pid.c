@@ -17,10 +17,10 @@ int16_t maxO;  //maxO输出限幅
 //不同电机的pid参数
  PID pid_dipan3508={5,0.15,0,0x1000,0x5000};
 extern PID pid_dipan3508;
-  PID pid_yuntai6020={5,0.1,0,3000,5000};
+  PID pid_yuntai6020={5,0.01,0,3000,5000};
 extern PID pid_yuntai6020;
  
- PID pid_yuntai6020_angle={5,0.01,0,3000,5000};
+ PID pid_yuntai6020_angle={5,0.01,0,8000,8000};
 extern PID pid_yuntai6020_angle;
 
 /**
