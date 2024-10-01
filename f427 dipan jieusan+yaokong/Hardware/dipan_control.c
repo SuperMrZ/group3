@@ -39,11 +39,11 @@ int16_t dipan_x_speed,dipan_y_speed,dipan_z_speed;//µ×ÅÌÇ°ºó£¬×óÓÒ£¬×ÔĞıËÙ¶È
 void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
 {
 
-	int16_t a1=1,a2=1,a3=1;//ËÙ¶ÈÏµÊı
+	int16_t a1=1,a2=1,a3=1;//é€Ÿåº¦ç³»æ•°
 	//
 	dipan_y_speed = RC_Ctl.rc.ch3-1024;
 	dipan_x_speed = RC_Ctl.rc.ch2-1024;
-	//s1²¦¸Ë¿ØÖÆÊÇ·ñÑØzÖá×ÔĞı
+	//s1æ§åˆ¶æ˜¯å¦è‡ªæ—‹
 	if (RC_Ctl.rc.s1==3)
 	{
 		dipan_z_speed = 0;
@@ -56,11 +56,11 @@ void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
 	{
 		dipan_z_speed = -0x150 ;
 	}
-
-	dipan_speedtarget[0] = 3*(a1*-dipan_y_speed - a2*dipan_x_speed - a3*dipan_z_speed);//ÓÒÇ°
-	dipan_speedtarget[1] = 3*(a1*dipan_y_speed  - a2*dipan_x_speed - a3*dipan_z_speed);//×óÇ°
-	dipan_speedtarget[2] = 3*(-a1*dipan_y_speed  + a2*dipan_x_speed - a3*dipan_z_speed);//ÓÒºó
-	dipan_speedtarget[3] = 3*(-a1*-dipan_y_speed + a2*dipan_x_speed - a3*dipan_z_speed);//×óºó
+	//è·å¾—ç›®æ ‡è½®æ‰€éœ€è¦çš„è½¬é€Ÿ
+	dipan_speedtarget[0] = 3*(a1*-dipan_y_speed - a2*dipan_x_speed - a3*dipan_z_speed);//å³å‰
+	dipan_speedtarget[1] = 3*(a1*dipan_y_speed  - a2*dipan_x_speed - a3*dipan_z_speed);//å·¦å‰
+	dipan_speedtarget[2] = 3*(-a1*dipan_y_speed  + a2*dipan_x_speed - a3*dipan_z_speed);//å³å
+	dipan_speedtarget[3] = 3*(-a1*-dipan_y_speed + a2*dipan_x_speed - a3*dipan_z_speed);//å·¦å
 
 
 	

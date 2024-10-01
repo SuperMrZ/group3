@@ -29,7 +29,7 @@ extern PID pid_dipan3508;
 
 
 
-int16_t pid_output(PID pid, int16_t feedback,int16_t target) 
+int16_t pid_output(PID pid, int16_t feedback,int16_t target) //三个参数分别为pid系数值，输出的值，目标值
 {
 	
 	int16_t error_now = 0;

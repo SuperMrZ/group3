@@ -67,7 +67,7 @@ void can_filter_init(void)
 
 
 
-
+//鎺ユ敹鐢垫満鍙嶉鏁版嵁骞惰В鏋愮殑涓柇鍑芥暟
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
     CAN_RxHeaderTypeDef rx_header;
     uint8_t rx_data[8];  // 假设每帧数据长度最多为8个字节
