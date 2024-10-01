@@ -110,7 +110,7 @@ int main(void)
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
-	int16_t target[2]={50,300};
+	int16_t target[2]={50,1000};
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,7 +123,7 @@ int main(void)
 	  
 
 	 dipan_speed_jiesuan(RC_Ctl);	
-
+    CAN_cmd_angle_6020motor(target,motor_recieve_yuntai6020);
 
 	 // CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
