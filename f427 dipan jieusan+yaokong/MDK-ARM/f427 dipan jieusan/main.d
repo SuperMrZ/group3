@@ -37,3 +37,4 @@ f427 dipan jieusan\main.o: ../Core/Inc/gpio.h
 f427 dipan jieusan\main.o: ../Hardware/can_user.h
 f427 dipan jieusan\main.o: ../Hardware/pid.h
 f427 dipan jieusan\main.o: ../Hardware/dipan_control.h
+f427 dipan jieusan\main.o: ../Hardware/yaokong.h

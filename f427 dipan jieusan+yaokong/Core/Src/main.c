@@ -28,6 +28,7 @@
 #include "can_user.h"
 #include "pid.h"
 #include "dipan_control.h"
+#include "yaokong.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -123,8 +124,6 @@ int main(void)
 
 	 dipan_speed_jiesuan(RC_Ctl);	
 
-	  CAN_cmd_speed_6020motor(target,motor_recieve_yuntai6020);
-	//  CAN_cmd_current_6020motor(500,500,500,500);
 
 	 // CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	

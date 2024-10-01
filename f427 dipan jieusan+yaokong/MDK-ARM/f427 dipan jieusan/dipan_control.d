@@ -31,3 +31,4 @@ f427 dipan jieusan\dipan_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
 f427 dipan jieusan\dipan_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 f427 dipan jieusan\dipan_control.o: ../Core/Inc/usart.h
 f427 dipan jieusan\dipan_control.o: ../Core/Inc/main.h
+f427 dipan jieusan\dipan_control.o: ..\Hardware\yaokong.h
