@@ -33,6 +33,7 @@ void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
 	dipan_speedtarget[1] = 3*(a1*dipan_y_speed  - a2*dipan_x_speed - a3*dipan_z_speed);//×óÇ°
 	dipan_speedtarget[2] = 3*(-a1*dipan_y_speed  + a2*dipan_x_speed - a3*dipan_z_speed);//ÓÒºó
 	dipan_speedtarget[3] = 3*(-a1*-dipan_y_speed + a2*dipan_x_speed - a3*dipan_z_speed);//×óºó
+	
 	yuntai_angletarget[1] +=0.1*(RC_Ctl.rc.ch0 - 1024);
 	if(yuntai_angletarget[1]>8190)
 	{

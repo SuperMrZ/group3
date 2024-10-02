@@ -27,14 +27,18 @@ Project File Date:  10/01/2024
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\keli5\ARM\ARMCC\Bin'
 Build target 'f427 dipan jieusan'
-compiling main.c...
-../Core/Src/main.c(114): warning:  #177-D: variable "target"  was declared but never referenced
-  	int16_t target[2]={50,1000};
-../Core/Src/main.c: 1 warning, 0 errors
+compiling pid.c...
+..\Hardware\pid.c(62): warning:  #177-D: variable "a"  was declared but never referenced
+      int16_t a = pid->error_now;
+..\Hardware\pid.c(63): warning:  #177-D: variable "b"  was declared but never referenced
+      int16_t b = pid->error_last;
+..\Hardware\pid.c(70): warning:  #177-D: variable "c"  was declared but never referenced
+      int16_t c = pid->iout;
+..\Hardware\pid.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=12388 RO-data=496 RW-data=104 ZI-data=1952  
+Program Size: Code=12172 RO-data=496 RW-data=224 ZI-data=1952  
 FromELF: creating hex file...
-"f427 dipan jieusan\f427 dipan jieusan.axf" - 0 Error(s), 1 Warning(s).
+"f427 dipan jieusan\f427 dipan jieusan.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -57,7 +61,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -16,8 +16,9 @@
 
 extern motor_recieve motor_recieve_dipan3508[4];
 extern motor_recieve motor_recieve_yuntai6020[2];
-extern PID pid_dipan3508;
-extern PID pid_yuntai6020;
+extern PID pid_dipan3508[4];
+extern PID pid_yuntai6020[2];
+extern PID pid_yuntai6020_angle[2];
 
 
 
@@ -142,7 +143,7 @@ void CAN_cmd_speed_3508motor(int16_t target[4], motor_recieve motor_recieve_info
 	
 	for (uint16_t i = 0; i < 4; i++) 
 	{
-    motor_currnt[i] = pid_output(pid_dipan3508, motor_recieve_info[i].speed, target[i]);
+    motor_currnt[i] = pid_output(&pid_dipan3508[i], motor_recieve_info[i].speed, target[i]);
     }
 
 	CAN_cmd_current_3508motor(motor_currnt[0],motor_currnt[1],motor_currnt[2],motor_currnt[3]);
@@ -190,7 +191,7 @@ void CAN_cmd_speed_6020motor(int16_t target[2], motor_recieve motor_recieve_info
 	
 	for (uint16_t i = 0; i < 2; i++) 
 	{
-    motor_currnt[i] = pid_output(pid_dipan3508, motor_recieve_info[i].speed, target[i]);
+    motor_currnt[i] = pid_output(&pid_yuntai6020[i], motor_recieve_info[i].speed, target[i]);
     }
 
 	CAN_cmd_current_6020motor(motor_currnt[0],motor_currnt[1],0,0);
@@ -228,9 +229,10 @@ void CAN_cmd_angle_6020motor(int16_t target[2], motor_recieve motor_recieve_info
 		
 						
 		
-    motor_speed[i] = pid_output( pid_yuntai6020_angle, cur, target[i]);
+    motor_speed[i] = pid_output( &pid_yuntai6020_angle[i], cur, target[i]);
     }
 
 	CAN_cmd_current_6020motor(motor_speed[0],motor_speed[1],0,0);
+	
 
 }
