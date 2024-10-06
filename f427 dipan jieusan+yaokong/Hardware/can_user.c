@@ -10,17 +10,27 @@
 {
 	uint16_t motor_id;
 	uint16_t angle;
-  uint16_t speed;
+  int16_t speed;
+	int16_t last_angle;
     
 }motor_recieve;
 
+
+
+//电机传回的结构体 数组
 extern motor_recieve motor_recieve_dipan3508[4];
 extern motor_recieve motor_recieve_yuntai6020[2];
 extern motor_recieve motor_recieve_bodan2006;
 
-extern PID pid_dipan3508;
-extern PID pid_yuntai6020;
+extern PID pid_dipan3508[4];
+
+extern PID pid_yuntai6020[2];
+extern PID pid_yuntai6020_angle[2];
+
 extern PID pid_bodan2006;
+extern PID pid_bodan2006_angle;
+
+
 
 
 /**
@@ -85,6 +95,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 		motor_recieve_dipan3508[i].motor_id=rx_header.StdId;
 		motor_recieve_dipan3508[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
 		motor_recieve_dipan3508[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
+		motor_recieve_dipan3508[i].last_angle = motor_recieve_dipan3508[i].angle;
 	}
 	else if(rx_header.StdId >= 0x205)
 	{
@@ -124,28 +135,8 @@ void CAN_cmd_current_3508motor(int16_t motor1, int16_t motor2, int16_t motor3, i
     chassis_can_send_data[7] = motor4;
  
     HAL_CAN_AddTxMessage(&hcan1, &chassis_tx_message, chassis_can_send_data, &send_mail_box);
-	
 }
 
-//void CAN_cmd_current_2006motor(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
-//{
-//    uint32_t send_mail_box;
-//    chassis_tx_message.StdId = 0x200;//查阅C620手册，ID为1-4时发送标识为0x200
-//    chassis_tx_message.IDE = CAN_ID_STD;
-//    chassis_tx_message.RTR = CAN_RTR_DATA;
-//    chassis_tx_message.DLC = 0x08;
-//    chassis_can_send_data[0] = motor1 >> 8; //id1电机 设置电流值高8位
-//    chassis_can_send_data[1] = motor1;      //id1电机 设置电流值低8位
-//    chassis_can_send_data[2] = motor2 >> 8; //id2电机 设置电流值高8位
-//    chassis_can_send_data[3] = motor2;      //id2电机 设置电流值低8位
-//    chassis_can_send_data[4] = motor3 >> 8;
-//    chassis_can_send_data[5] = motor3;
-//    chassis_can_send_data[6] = motor4 >> 8;
-//    chassis_can_send_data[7] = motor4;
-// 
-//    HAL_CAN_AddTxMessage(&hcan1, &chassis_tx_message, chassis_can_send_data, &send_mail_box);
-//	
-//}
 
 
 /**
@@ -163,24 +154,10 @@ void CAN_cmd_speed_3508motor(int16_t target[4], motor_recieve motor_recieve_info
 	
 	for (uint16_t i = 0; i < 4; i++) 
 	{
-    motor_currnt[i] = pid_output(pid_dipan3508, motor_recieve_info[i].speed, target[i]);
+    motor_currnt[i] = pid_output(&pid_dipan3508[i], motor_recieve_info[i].speed, target[i]);
     }
 
 	CAN_cmd_current_3508motor(motor_currnt[0],motor_currnt[1],motor_currnt[2],motor_currnt[3]);
-
-}
-
-void CAN_cmd_speed_2006motor(int16_t target, motor_recieve motor_recieve_info)
-{
-	
-	int16_t motor_currnt[4];
-	
-	for (uint16_t i = 0; i < 4; i++) 
-	{
-    motor_currnt[i] = pid_output(pid_dipan3508, motor_recieve_info.speed, target);
-    }
-
-	CAN_cmd_current_3508motor(motor_currnt[0],0,0,0);
 
 }
 
@@ -225,10 +202,24 @@ void CAN_cmd_speed_6020motor(int16_t target[2], motor_recieve motor_recieve_info
 	
 	for (uint16_t i = 0; i < 2; i++) 
 	{
-    motor_currnt[i] = pid_output(pid_yuntai6020, motor_recieve_info[i].speed, target[i]);
+    motor_currnt[i] = pid_output(&pid_yuntai6020[i], motor_recieve_info[i].speed, target[i]);
     }
 
 	CAN_cmd_current_6020motor(motor_currnt[0],motor_currnt[1],0,0);
+
+}
+
+void CAN_cmd_speed_2006motor(int16_t target, motor_recieve motor_recieve_info)
+{
+	
+	int16_t motor_currnt[4];
+	
+	for (uint16_t i = 0; i < 4; i++) 
+	{
+    motor_currnt[i] = pid_output(&pid_bodan2006, motor_recieve_info.speed, target);
+    }
+
+	CAN_cmd_current_3508motor(motor_currnt[0],0,0,0);
 
 }
 
@@ -240,26 +231,27 @@ void CAN_cmd_angle_6020motor(int16_t target[2], motor_recieve motor_recieve_info
 	
 	for (uint16_t i = 0; i < 2; i++) 
 	{
-		
-		//角度过零处理begin
+		//过零判断开始
 		int16_t cur;
-		cur=motor_recieve_info[i].angle;
-		if(target[i]-cur > 4096)
+	    cur=motor_recieve_info[i].angle;
+	    if(target[i]-cur > 4096 )
 		{
-			cur +=8192;
+			cur += 8192;
 		}
-		else if (target[i] - cur < -4096)
+		else if(target[i]-cur < -4096 )
 		{
-			cur = cur -8192;
+			cur =cur -8192;
 		}
-		//角度过零处理end
-		motor_speed[i] = pid_output( pid_yuntai6020_angle, cur, target[i]);
+	
+	    //过零判断结束
+	
+    motor_speed[i] = pid_output( &pid_yuntai6020_angle[i], cur, target[i]);
     }
 
-		CAN_cmd_speed_6020motor(motor_speed,motor_recieve_yuntai6020);
+	CAN_cmd_current_6020motor(motor_speed[0],motor_speed[1],0,0);
+	
 
 }
-
 
 
 void CAN_cmd_angle_2006motor(int16_t target, motor_recieve motor_recieve_info)
@@ -279,9 +271,39 @@ void CAN_cmd_angle_2006motor(int16_t target, motor_recieve motor_recieve_info)
 			cur = cur -8192;
 		}
 		//角度过零处理end
-		motor_speed = pid_output( pid_bodan2006_angle, cur, target);
+		
+	
+//#define FULL_COUNT 36        // 完整圈数
+//#define HALF_ECD_RANGE 4096  // 半个编码器的范围
+//#define ECD_RANGE 8192       // 整个编码器的范围
+//#define MOTOR_ECD_TO_ANGLE  ( 2*3.141592653589793 / ECD_RANGE ) // 弧度制
+
+//void updateMotorAngle() {
+//   
+//    int ecdDifference = shoot_control.shoot_motor_measure->ecd - shoot_control.shoot_motor_measure->last_ecd;
+//    
+//    if (ecdDifference > HALF_ECD_RANGE) {
+//        shoot_control.ecd_count--;
+//    } else if (ecdDifference < -HALF_ECD_RANGE) {
+//        shoot_control.ecd_count++;
+//    }
+		
+
+//     //圈数溢出处理
+//    if (shoot_control.ecd_count >= FULL_COUNT) {
+//        shoot_control.ecd_count = -(FULL_COUNT - 1);
+//    } else if (shoot_control.ecd_count <= -FULL_COUNT) {
+//        shoot_control.ecd_count = FULL_COUNT - 1;
+//    }
+
+//     //输出轴角度增量
+//    shoot_control.angle = (shoot_control.ecd_count * ECD_RANGE + shoot_control.shoot_motor_measure->ecd) * MOTOR_ECD_TO_ANGLE;
+//}
+
+		motor_speed = pid_output( &pid_bodan2006_angle, cur, target);
     
-		CAN_cmd_speed_2006motor(motor_speed,motor_recieve_bodan2006);
+		CAN_cmd_speed_2006motor(motor_speed/10,motor_recieve_dipan3508[0]);
 		
 
 }
+

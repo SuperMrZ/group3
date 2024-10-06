@@ -38,4 +38,3 @@ f427 dipan jieusan\main.o: ../Hardware/can_user.h
 f427 dipan jieusan\main.o: ../Hardware/pid.h
 f427 dipan jieusan\main.o: ../Hardware/dipan_control.h
 f427 dipan jieusan\main.o: ../Hardware/yaokong.h
-f427 dipan jieusan\main.o: C:\app\keil5\ARM\ARMCC\Bin\..\include\math.h

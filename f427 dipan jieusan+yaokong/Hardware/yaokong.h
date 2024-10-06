@@ -11,6 +11,7 @@ typedef struct
 		unsigned short ch3;
 		unsigned char s1;
 		unsigned char s2;
+		unsigned char last_s2;
 	}rc;
 	
 	

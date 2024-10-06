@@ -5,6 +5,10 @@
 extern 	RC_Ctl_t RC_Ctl;
 
 int16_t dipan_speedtarget[4];
+int16_t yuntai_angletarget[2]={4000,4000};
+
+
+
 int16_t dipan_x_speed,dipan_y_speed,dipan_z_speed;//底盘前后，左右，自旋速度
 	
 void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
@@ -32,7 +36,16 @@ void dipan_speed_jiesuan(RC_Ctl_t RC_Ctl)
 	dipan_speedtarget[1] = 3*(a1*dipan_y_speed  - a2*dipan_x_speed - a3*dipan_z_speed);//左前
 	dipan_speedtarget[2] = 3*(-a1*dipan_y_speed  + a2*dipan_x_speed - a3*dipan_z_speed);//右后
 	dipan_speedtarget[3] = 3*(-a1*-dipan_y_speed + a2*dipan_x_speed - a3*dipan_z_speed);//左后
-
+	
+	yuntai_angletarget[1] +=0.1*(RC_Ctl.rc.ch0 - 1024);
+	if(yuntai_angletarget[1]>8190)
+	{
+		yuntai_angletarget[1]=3;
+	}
+	if(yuntai_angletarget[1]<2)
+	{
+		yuntai_angletarget[1]=8190;
+	}
 
 	
 }	

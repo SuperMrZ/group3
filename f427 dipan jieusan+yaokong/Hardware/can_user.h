@@ -6,7 +6,8 @@
 {
 	uint16_t motor_id;
 	uint16_t angle;
-  uint16_t speed;
+  int16_t speed;
+	int16_t last_angle;
     
 }motor_recieve;
 
@@ -21,7 +22,6 @@ void CAN_cmd_current_6020motor(int16_t motor1, int16_t motor2, int16_t motor3, i
 void CAN_cmd_speed_6020motor(int16_t target[2], motor_recieve motor_recieve_info[2]);
 void CAN_cmd_angle_6020motor(int16_t target[2], motor_recieve motor_recieve_info[2]);
 
-void CAN_cmd_current_2006motor(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4);
 void CAN_cmd_speed_2006motor(int16_t target, motor_recieve motor_recieve_info);
 void CAN_cmd_angle_2006motor(int16_t target, motor_recieve motor_recieve_info);
 
