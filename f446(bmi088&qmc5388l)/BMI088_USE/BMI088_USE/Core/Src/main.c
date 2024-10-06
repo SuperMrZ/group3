@@ -28,6 +28,7 @@
 #include <math.h>
 #include "bmi088reg.h"
 #include "qmc5388l.h"
+#include "ZiTai-jiesuan.h"
 
 
 /* USER CODE END Includes */
@@ -95,9 +96,9 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   BMI088_CONF_INIT();
+  QMC5883L_Init();
   acc_raw_data_t acc_data;
   gyro_raw_data_t gyro_raw_data;
-  QMC5883L_Init();
   int16_t x, y, z;  
   /* USER CODE END 2 */
 

@@ -495,6 +495,16 @@
               <FileType>5</FileType>
               <FilePath>..\Core\Inc\qmc5388l.h</FilePath>
             </File>
+            <File>
+              <FileName>ZiTai-jiesuan.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\ZiTai-jiesuan.c</FilePath>
+            </File>
+            <File>
+              <FileName>ZiTai-jiesuan.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\ZiTai-jiesuan.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
