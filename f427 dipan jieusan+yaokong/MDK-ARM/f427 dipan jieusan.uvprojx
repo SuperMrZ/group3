@@ -431,16 +431,6 @@
               <FilePath>..\Hardware\test.h</FilePath>
             </File>
             <File>
-              <FileName>dipan_gensui.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\dipan_gensui.c</FilePath>
-            </File>
-            <File>
-              <FileName>dipan_gensui.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\dipan_gensui.h</FilePath>
-            </File>
-            <File>
               <FileName>yaokong.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\yaokong.c</FilePath>
@@ -449,6 +439,16 @@
               <FileName>yaokong.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Hardware\yaokong.h</FilePath>
+            </File>
+            <File>
+              <FileName>dipan_gensui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\dipan_gensui.c</FilePath>
+            </File>
+            <File>
+              <FileName>dipan_gensui.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\dipan_gensui.h</FilePath>
             </File>
           </Files>
         </Group>

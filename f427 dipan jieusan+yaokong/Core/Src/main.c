@@ -29,6 +29,7 @@
 #include "pid.h"
 #include "dipan_control.h"
 #include "yaokong.h"
+#include "dipan_gensui.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,6 +77,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 
+
 {
 
   /* USER CODE BEGIN 1 */
@@ -111,7 +113,7 @@ int main(void)
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
-	int16_t target[2]={50,300};
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -124,10 +126,11 @@ int main(void)
 	  
 
 	 dipan_speed_jiesuan(RC_Ctl);	
-    CAN_cmd_angle_6020motor(yuntai_angletarget,motor_recieve_yuntai6020);
+	 dipan_gensui();
+ //   CAN_cmd_angle_6020motor(yuntai_angletarget,motor_recieve_yuntai6020);
+	//  dipan_gensui();
 
-
-	 // CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
+	  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
 	 HAL_Delay(1);
   }

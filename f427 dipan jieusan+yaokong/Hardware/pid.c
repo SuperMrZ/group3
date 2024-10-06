@@ -13,7 +13,7 @@ int16_t error_last;
 int16_t iout;
 
 } PID;
-////aaa
+
 
 
 
@@ -48,11 +48,6 @@ extern PID pid_yuntai6020_angle[2];
   
 
 
-int16_t output ;
-int16_t pout ;
-int16_t a ;
-int16_t b ;
-int16_t c ;
 int16_t pid_output(PID *pid, int16_t feedback, int16_t target) 
 {
     // ¸üĞÂÎó²î

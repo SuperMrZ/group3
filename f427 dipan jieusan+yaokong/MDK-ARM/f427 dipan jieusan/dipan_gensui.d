@@ -29,3 +29,6 @@ f427 dipan jieusan\dipan_gensui.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx
 f427 dipan jieusan\dipan_gensui.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 f427 dipan jieusan\dipan_gensui.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 f427 dipan jieusan\dipan_gensui.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+f427 dipan jieusan\dipan_gensui.o: ..\Hardware\can_user.h
+f427 dipan jieusan\dipan_gensui.o: ..\Hardware\yaokong.h
+f427 dipan jieusan\dipan_gensui.o: ..\Hardware\dipan_control.h

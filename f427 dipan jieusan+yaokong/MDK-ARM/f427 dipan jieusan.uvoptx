@@ -406,8 +406,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Hardware\dipan_gensui.c</PathWithFileName>
-      <FilenameWithoutPath>dipan_gensui.c</FilenameWithoutPath>
+      <PathWithFileName>..\Hardware\yaokong.c</PathWithFileName>
+      <FilenameWithoutPath>yaokong.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -418,8 +418,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\dipan_gensui.h</PathWithFileName>
-      <FilenameWithoutPath>dipan_gensui.h</FilenameWithoutPath>
+      <PathWithFileName>..\Hardware\yaokong.h</PathWithFileName>
+      <FilenameWithoutPath>yaokong.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -430,8 +430,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Hardware\yaokong.c</PathWithFileName>
-      <FilenameWithoutPath>yaokong.c</FilenameWithoutPath>
+      <PathWithFileName>..\Hardware\dipan_gensui.c</PathWithFileName>
+      <FilenameWithoutPath>dipan_gensui.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -442,8 +442,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Hardware\yaokong.h</PathWithFileName>
-      <FilenameWithoutPath>yaokong.h</FilenameWithoutPath>
+      <PathWithFileName>..\Hardware\dipan_gensui.h</PathWithFileName>
+      <FilenameWithoutPath>dipan_gensui.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
