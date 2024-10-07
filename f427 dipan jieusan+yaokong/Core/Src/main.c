@@ -48,6 +48,10 @@ uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
 extern int16_t dipan_speedtarget[4];
 extern int16_t yuntai_angletarget[2];
 extern int16_t bodan_angletarget;
+
+extern int16_t shoot_count;
+ int16_t rotorTurns = 0; //2006转子目标圈数 
+ int16_t remainingEcd = 0; // 2006转子角度
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -84,7 +88,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+   
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -133,8 +137,16 @@ int main(void)
 		
 	
 
-			  CAN_cmd_angle_2006motor(bodan_angletarget,motor_recieve_dipan3508[0]);
 			 
+		if(rotorTurns <= shoot_count)
+		{
+			CAN_cmd_angle_2006motor(remainingEcd,motor_recieve_dipan3508[0]);
+		}
+		else
+		{
+			CAN_cmd_speed_2006motor(400,motor_recieve_dipan3508[0]);
+		}
+			  
 	
 		
 	

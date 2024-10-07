@@ -32,3 +32,4 @@ f427 dipan jieusan\can_user.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal
 f427 dipan jieusan\can_user.o: ../Core/Inc/can.h
 f427 dipan jieusan\can_user.o: ../Core/Inc/main.h
 f427 dipan jieusan\can_user.o: ..\Hardware\pid.h
+f427 dipan jieusan\can_user.o: ..\Hardware\can_user.h
