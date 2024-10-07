@@ -1,0 +1,9 @@
+bmi088_test\mahonyahrs.o: ..\Core\Src\MahonyAHRS.c
+bmi088_test\mahonyahrs.o: ../Core/Inc/MahonyAHRS.h
+bmi088_test\mahonyahrs.o: ../Core/Inc/bmi088.h
+bmi088_test\mahonyahrs.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+bmi088_test\mahonyahrs.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+bmi088_test\mahonyahrs.o: ../Core/Inc/bmi088reg.h
+bmi088_test\mahonyahrs.o: ../Core/Inc/ist8310.h
+bmi088_test\mahonyahrs.o: ../Core/Inc/ist8310reg.h
+bmi088_test\mahonyahrs.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h
