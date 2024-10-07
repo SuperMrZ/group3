@@ -1,20 +1,7 @@
 #include "stm32f4xx.h"                  // Device header
 #include "can.h"
 #include "pid.h"
-
-
-
-
-//一些变量声明
- typedef struct 
-{
-	uint16_t motor_id;
-	uint16_t angle;
-  int16_t speed;
-	int16_t last_angle;
-    
-}motor_recieve;
-
+#include "can_user.h"
 
 
 //电机传回的结构体 数组
@@ -95,8 +82,11 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 		motor_recieve_dipan3508[i].motor_id=rx_header.StdId;
 		motor_recieve_dipan3508[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
 		motor_recieve_dipan3508[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
+		updateMotorAngle(motor_recieve_dipan3508[0]);
 		motor_recieve_dipan3508[i].last_angle = motor_recieve_dipan3508[i].angle;
 	}
+
+	
 	else if(rx_header.StdId >= 0x205)
 	{
 		int16_t i =rx_header.StdId -0x205;
@@ -193,12 +183,12 @@ void CAN_cmd_current_6020motor(int16_t motor1, int16_t motor2, int16_t motor3, i
   * @retval 无
   */
 
-int16_t motor_currnt[2];
+
 
 void CAN_cmd_speed_6020motor(int16_t target[2], motor_recieve motor_recieve_info[2])
 {
 	
-	
+	int16_t motor_currnt[2];
 	
 	for (uint16_t i = 0; i < 2; i++) 
 	{
@@ -273,37 +263,71 @@ void CAN_cmd_angle_2006motor(int16_t target, motor_recieve motor_recieve_info)
 		//角度过零处理end
 		
 	
-//#define FULL_COUNT 36        // 完整圈数
-//#define HALF_ECD_RANGE 4096  // 半个编码器的范围
-//#define ECD_RANGE 8192       // 整个编码器的范围
-//#define MOTOR_ECD_TO_ANGLE  ( 2*3.141592653589793 / ECD_RANGE ) // 弧度制
-
-//void updateMotorAngle() {
-//   
-//    int ecdDifference = shoot_control.shoot_motor_measure->ecd - shoot_control.shoot_motor_measure->last_ecd;
-//    
-//    if (ecdDifference > HALF_ECD_RANGE) {
-//        shoot_control.ecd_count--;
-//    } else if (ecdDifference < -HALF_ECD_RANGE) {
-//        shoot_control.ecd_count++;
-//    }
-		
-
-//     //圈数溢出处理
-//    if (shoot_control.ecd_count >= FULL_COUNT) {
-//        shoot_control.ecd_count = -(FULL_COUNT - 1);
-//    } else if (shoot_control.ecd_count <= -FULL_COUNT) {
-//        shoot_control.ecd_count = FULL_COUNT - 1;
-//    }
-
-//     //输出轴角度增量
-//    shoot_control.angle = (shoot_control.ecd_count * ECD_RANGE + shoot_control.shoot_motor_measure->ecd) * MOTOR_ECD_TO_ANGLE;
-//}
-
 		motor_speed = pid_output( &pid_bodan2006_angle, cur, target);
     
 		CAN_cmd_speed_2006motor(motor_speed/10,motor_recieve_dipan3508[0]);
 		
+
+}
+
+
+
+
+
+
+//#define ECD_PER_ROTATION 8192  // 转子一圈对应的编码值
+//#define RATIO 36               // 减速比
+void calculateRotorRotation(double outputAngleIncrement, motor_recieve motor_recieve_info, int16_t *rotorTurns, int16_t *remainingEcd)
+{
+	// 计算输出轴圈数
+    double outputTurns = outputAngleIncrement / (2.0 * 3.141592653589793); 
+    
+    // 转子所需圈数
+    *rotorTurns = (int)(outputTurns * RATIO); 
+    
+    // 转子剩余目标编码值
+    double remainingOutputAngle = outputAngleIncrement - ((int)(outputTurns) * 2.0 * 3.141592653589793);
+    *remainingEcd = (int)((remainingOutputAngle / (2.0 * 3.141592653589793 / ECD_PER_ROTATION)) + 0.5); 
+
+    int targetEcd = (motor_recieve_info.angle + *remainingEcd) % ECD_PER_ROTATION;
+
+    // 编码值确保在有效范围
+    if (targetEcd < 0) {
+        targetEcd += ECD_PER_ROTATION; 
+
+    *remainingEcd = targetEcd; 
+}
+}
+
+
+
+//#define FULL_COUNT 36        // 完整圈数
+//#define HALF_ECD_RANGE 4096  // 半个编码器的范围
+//#define ECD_RANGE 8192       // 整个编码器的范围
+//#define MOTOR_ECD_TO_ANGLE  ( 2*3.141592653589793 / ECD_RANGE ) // 弧度制
+int16_t shoot_count=0;
+
+void updateMotorAngle(motor_recieve motor_recieve_info) 
+	{
+    int16_t ecdDifference;
+    ecdDifference = motor_recieve_info.last_angle - motor_recieve_info.angle;
+//		
+//    if (ecdDifference > HALF_ECD_RANGE) {
+//        shoot_count--;
+//    } else if (ecdDifference < -HALF_ECD_RANGE) {
+//        shoot_count++;
+//    }
+      if (ecdDifference < 0) 
+			{ shoot_count++; }
+				
+     //圈数溢出处理
+//    if (shoot_count >= FULL_COUNT) {
+//        shoot_count = -(FULL_COUNT - 1);
+//    } else if (shoot_count <= -FULL_COUNT) {
+//        shoot_count = FULL_COUNT - 1;
+//    }
+			if (shoot_count >= FULL_COUNT) {
+        shoot_count = 0;}
 
 }
 
