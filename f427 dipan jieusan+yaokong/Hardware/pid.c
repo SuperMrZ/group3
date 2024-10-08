@@ -5,7 +5,7 @@ typedef struct
 //p,i,d参数值,maxI积分限幅，maxO输出限幅
 float kp;
 float ki;
-int16_t kd;
+float kd;
 int16_t maxI;  //maxI积分限幅
 int16_t maxO;  //maxO输出限幅
 int16_t error_now;
@@ -39,6 +39,19 @@ PID pid_yuntai6020_angle[2] = {
 
 extern PID pid_yuntai6020_angle[2];
 
+PID pid_yuntai3508[3] = {
+    {5, 0.01,0, 0x1000, 0x5000, 0, 0,0},
+    {5, 0.01, 0, 0x1000, 0x5000, 0, 0,0},
+    {5, 0.01, 0, 0x1000, 0x5000, 0, 0,0}
+};
+extern PID pid_yuntai3508[3];
+
+PID pid_yuntai3508_angle[3] = {
+    {0.3,0.01,0, 0x95, 0x5000, 0, 0,0},
+    {5, 0.01, 0, 0x1000, 0x5000, 0, 0,0},
+    {5, 0.01, 0, 0x1000, 0x5000, 0, 0,0}
+};
+extern PID pid_yuntai3508_angle[3];
 /**
   * @brief  pid_output此函数用于输出一个pid输出
   * @param  kp,ki,kd,maxI,maxO,分别指pid算法参数，target为你想达到的目标值，feedback为当前目标的值（反馈值）
@@ -66,12 +79,15 @@ int16_t pid_output(PID *pid, int16_t feedback, int16_t target)
     if (pid->iout > pid->maxI) {
         pid->iout = pid->maxI;
     }
+	else if (pid->iout < - pid->maxI) {
+        pid->iout =  - pid->maxI;
+    }
 
     // 计算D部分
     int16_t dout = pid->kd * (pid->error_now - pid->error_last);
 
     // 计算输出并限制
-    int16_t output = pout + dout + pid->iout;
+    int16_t output = pout - dout + pid->iout;
     if (output > pid->maxO) {
         output = pid->maxO;
     }

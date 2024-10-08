@@ -450,6 +450,16 @@
               <FileType>5</FileType>
               <FilePath>..\Hardware\dipan_gensui.h</FilePath>
             </File>
+            <File>
+              <FileName>bodan.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\bodan.c</FilePath>
+            </File>
+            <File>
+              <FileName>bodan.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\bodan.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -19,6 +19,8 @@ int16_t error_last;
 extern PID pid_dipan3508[4];
 extern PID pid_yuntai6020[2];
 extern PID pid_yuntai6020_angle[2];
+extern PID pid_yuntai3508[3];
+extern PID pid_yuntai3508_angle[3];
 
 int16_t pid_output(PID *pid, int16_t feedback, int16_t target) ;
 

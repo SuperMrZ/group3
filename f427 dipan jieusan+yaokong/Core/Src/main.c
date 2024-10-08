@@ -30,6 +30,7 @@
 #include "dipan_control.h"
 #include "yaokong.h"
 #include "dipan_gensui.h"
+#include "bodan.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,10 +42,16 @@
 /* USER CODE BEGIN PD */
 motor_recieve motor_recieve_dipan3508[4];
 motor_recieve motor_recieve_yuntai6020[2];
+motor_recieve motor_recieve_yuntai3508[3];
 RC_Ctl_t RC_Ctl;   					//声明遥控器数据结构体
 uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
 extern int16_t dipan_speedtarget[4];
 extern int16_t yuntai_angletarget[2];
+uint16_t a =50;
+uint16_t* bodan_target_angle = &a;
+
+
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -76,8 +83,6 @@ void SystemClock_Config(void);
   * @retval int
   */
 int main(void)
-
-
 {
 
   /* USER CODE BEGIN 1 */
@@ -105,17 +110,19 @@ int main(void)
   MX_DMA_Init();
   MX_CAN1_Init();
   MX_USART1_UART_Init();
+  MX_CAN2_Init();
   /* USER CODE BEGIN 2 */
 	HAL_CAN_Start(&hcan1);
+	HAL_CAN_Start(&hcan2);
 	can_filter_init();
-	
+	can_filter2_init();
 
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
 
   /* USER CODE END 2 */
-
+int16_t target[3]={100,5,5};
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -123,14 +130,18 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  
 
 	 dipan_speed_jiesuan(RC_Ctl);	
-	 dipan_gensui();
- //   CAN_cmd_angle_6020motor(yuntai_angletarget,motor_recieve_yuntai6020);
-	//  dipan_gensui();
+//	 dipan_gensui();
 
-	  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
+	  zhuangdan(bodan_target_angle);
+	  
+
+
+	//  CAN_cmd_current_yuntaimotor(300,0,0,0);
+	//  CAN_cmd_speed_yuntaimotor(target,motor_recieve_yuntai3508);
+	  //CAN_cmd_angle_yuntaimotor(target,motor_recieve_yuntai3508);
+	//  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
 	 HAL_Delay(1);
   }
