@@ -14,13 +14,26 @@ typedef struct
 		unsigned char s2_last;
 	}rc;
 	
+	struct 
+	{
+		unsigned short x;
+		unsigned short y;
+		unsigned short z;
+		unsigned char press_l;
+		unsigned char press_r;
+	}mouse;
+	
+	struct
+	{
+		unsigned short v;
+	}key;
 	
 	
 }RC_Ctl_t;
 
 extern 	RC_Ctl_t RC_Ctl;
 
- extern uint8_t sbus_rx_buffer[18];//声明遥控器接收缓存数组
+extern uint8_t sbus_rx_buffer[18];//声明遥控器接收缓存数组
 
 extern int8_t yaokongjishi; 
 

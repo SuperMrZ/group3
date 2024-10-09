@@ -126,8 +126,6 @@ int main(void)
 	__HAL_DMA_DISABLE_IT(huart1.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 
 
-
-	int16_t target[4]={500,500,500,500};
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -2,7 +2,7 @@ f427 dipan jieusan\bodan.o: ..\Hardware\bodan.c
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f427xx.h
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Include/core_cm4.h
-f427 dipan jieusan\bodan.o: D:\keli5\ARM\ARMCC\Bin\..\include\stdint.h
+f427 dipan jieusan\bodan.o: C:\app\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Include/cmsis_version.h
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -14,7 +14,7 @@ f427 dipan jieusan\bodan.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rc
 f427 dipan jieusan\bodan.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 f427 dipan jieusan\bodan.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 f427 dipan jieusan\bodan.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-f427 dipan jieusan\bodan.o: D:\keli5\ARM\ARMCC\Bin\..\include\stddef.h
+f427 dipan jieusan\bodan.o: C:\app\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 f427 dipan jieusan\bodan.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 f427 dipan jieusan\bodan.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 f427 dipan jieusan\bodan.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
