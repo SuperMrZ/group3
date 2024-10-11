@@ -147,26 +147,26 @@ int16_t C620_GetSpeed(CAN_HandleTypeDef *hcan,uint16_t ID)
 //   }
 }
 
-
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-    if(hcan->Instance== CAN1)
-    {
-        HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &RxHeader, Rx_Temp);
-        if(RxHeader.StdId==0x201)
-        {
-            memcpy(Rx_data1,Rx_Temp,8);
-        }
-        else if(RxHeader.StdId==0x202)
-        {
-            memcpy(Rx_data2,Rx_Temp,8);
-        }else if(RxHeader.StdId==0x203)
-        {
-            memcpy(Rx_data3,Rx_Temp,8);
-        }else if(RxHeader.StdId==0x204)
-        {
-            memcpy(Rx_data4,Rx_Temp,8);
-        }
-    }
-}
+// 此处因为与队友开发代码冲突注释了
+//void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+//{
+//    if(hcan->Instance== CAN1)
+//    {
+//        HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &RxHeader, Rx_Temp);
+//        if(RxHeader.StdId==0x201)
+//        {
+//            memcpy(Rx_data1,Rx_Temp,8);
+//        }
+//        else if(RxHeader.StdId==0x202)
+//        {
+//            memcpy(Rx_data2,Rx_Temp,8);
+//        }else if(RxHeader.StdId==0x203)
+//        {
+//            memcpy(Rx_data3,Rx_Temp,8);
+//        }else if(RxHeader.StdId==0x204)
+//        {
+//            memcpy(Rx_data4,Rx_Temp,8);
+//        }
+//    }
+//}
 

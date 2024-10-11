@@ -21,6 +21,10 @@ f446v1.1/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
+  D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
+  D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  ..\Core\Inc\can.h ..\Core\Inc\usart.h ..\Core\Inc\gpio.h \
-  ..\Hardware\C620_CAN.h
+  ..\Core\Inc\can.h ..\Core\Inc\dma.h ..\Core\Inc\tim.h \
+  ..\Core\Inc\usart.h ..\Core\Inc\gpio.h ..\Hardware\can_user.h \
+  ..\Hardware\pid.h ..\Hardware\dipan_control.h ..\Hardware\yaokong.h \
+  ..\Hardware\dipan_gensui.h ..\Hardware\bodan.h

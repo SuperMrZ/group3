@@ -3,6 +3,8 @@
 "f446v1.1\main.o"
 "f446v1.1\gpio.o"
 "f446v1.1\can.o"
+"f446v1.1\dma.o"
+"f446v1.1\tim.o"
 "f446v1.1\usart.o"
 "f446v1.1\stm32f4xx_it.o"
 "f446v1.1\stm32f4xx_hal_msp.o"
@@ -25,6 +27,13 @@
 "f446v1.1\stm32f4xx_hal_uart.o"
 "f446v1.1\system_stm32f4xx.o"
 "f446v1.1\c620_can.o"
+"f446v1.1\bodan.o"
+"f446v1.1\can_user.o"
+"f446v1.1\dipan_control.o"
+"f446v1.1\dipan_gensui.o"
+"f446v1.1\pid.o"
+"f446v1.1\test.o"
+"f446v1.1\yaokong.o"
 --strict --scatter "F446V1.1\F446V1.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
