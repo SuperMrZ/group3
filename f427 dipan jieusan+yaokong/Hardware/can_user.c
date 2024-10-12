@@ -396,7 +396,106 @@ void CAN_cmd_angle_yuntaimotor(int16_t target[3], motor_recieve motor_recieve_in
     motor_speed[i] = pid_output( &pid_yuntai3508_angle[i], cur, target[i]);
     }
 
+
 	CAN_cmd_speed_yuntaimotor(motor_speed ,motor_recieve_info);
+	//CAN_cmd_current_yuntaimotor(motor_speed[0],motor_speed[1],motor_speed[2],0);
+
+}
+
+
+
+/**
+  * @brief  CAN_cmd_current_yuntaimotor此函数用于控制云台三个3508电机的输入电流
+  * @param  motor1-4指的是你想指定相应电机的电流输入值，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+static CAN_TxHeaderTypeDef  single_yuntai3508_tx_message;//发送数据的数据头
+static uint8_t              single_yuntai3508_can_send_data[8];//要发送的数据数组
+void CAN_cmd_current_single_yuntaimotor(int16_t motor_currnt, int16_t id)
+{
+    uint32_t send_mail_box;
+    single_yuntai3508_tx_message.StdId = 0x200;//查阅C620手册，ID为1-4时发送标识为0x200
+    single_yuntai3508_tx_message.IDE = CAN_ID_STD;
+    single_yuntai3508_tx_message.RTR = CAN_RTR_DATA;
+    single_yuntai3508_tx_message.DLC = 0x08;
+	if(id==1)
+	{
+		single_yuntai3508_can_send_data[0] = motor_currnt >> 8; //id1电机 设置电流值高8位
+		single_yuntai3508_can_send_data[1] = motor_currnt;      //id1电机 设置电流值低8位
+	}
+	if(id==2)
+	{
+		single_yuntai3508_can_send_data[2] = motor_currnt >> 8; //id1电机 设置电流值高8位
+		single_yuntai3508_can_send_data[3] = motor_currnt;      //id1电机 设置电流值低8位
+	}
+	if(id==3)
+	{
+		single_yuntai3508_can_send_data[4] = motor_currnt >> 8; //id1电机 设置电流值高8位
+		single_yuntai3508_can_send_data[5] = motor_currnt;      //id1电机 设置电流值低8位
+	}
+	if(id==4)
+	{
+		single_yuntai3508_can_send_data[6] = motor_currnt >> 8; //id1电机 设置电流值高8位
+		single_yuntai3508_can_send_data[7] = motor_currnt;      //id1电机 设置电流值低8位
+	}
+    
+ 
+    HAL_CAN_AddTxMessage(&hcan2, &single_yuntai3508_tx_message, single_yuntai3508_can_send_data, &send_mail_box);
+}
+
+/**
+  * @brief  CAN_cmd_speed_yuntaimotor此函数用于控制云台三个3508电机的速度
+  * @param  motor1-4指的是你想指定相应电机的速度输出，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+
+int16_t aa;
+void CAN_cmd_speed_single_yuntaimotor(int16_t target,int16_t id, motor_recieve motor_recieve_info[3])
+{
+	
+	//int16_t motor_currnt;
+	
+	
+    aa = pid_output(&pid_yuntai3508[id-1], motor_recieve_info[id-1].speed, target);
+    
+
+	CAN_cmd_current_single_yuntaimotor(aa,id);
+
+}
+
+/**
+  * @brief  CAN_cmd_angle_yuntaimotor此函数用于控制云台三个3508电机的角度
+  * @param  motor1-4指的是你想指定相应电机的速度输出，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+
+
+void CAN_cmd_angle_single_yuntaimotor(int16_t target,int16_t id, motor_recieve motor_recieve_info[3])
+{
+	
+	int16_t motor_speed;
+	
+		//过零判断开始
+		int16_t cur;
+	    cur=motor_recieve_info[id-1].angle;
+	    if(target-cur > 4096 )
+		{
+			cur += 8192;
+		}
+		else if(target-cur < -4096 )
+		{
+			cur =cur -8192;
+		}
+
+	
+	
+	    //过零判断结束
+	
+    motor_speed = pid_output( &pid_yuntai3508_angle[id-1], cur, target);
+    
+
+
+	CAN_cmd_speed_single_yuntaimotor(motor_speed ,id,motor_recieve_info);
 	//CAN_cmd_current_yuntaimotor(motor_speed[0],motor_speed[1],motor_speed[2],0);
 
 }

@@ -132,16 +132,14 @@ int16_t target[3]={100,5,5};
     /* USER CODE BEGIN 3 */
 
 	 dipan_speed_jiesuan(RC_Ctl);	
-//	 dipan_gensui();
 
-	  zhuangdan(bodan_target_angle);
-	  
+
 
 
 	//  CAN_cmd_current_yuntaimotor(300,0,0,0);
 	//  CAN_cmd_speed_yuntaimotor(target,motor_recieve_yuntai3508);
 	  //CAN_cmd_angle_yuntaimotor(target,motor_recieve_yuntai3508);
-	//  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
+	  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
 	 HAL_Delay(1);
   }

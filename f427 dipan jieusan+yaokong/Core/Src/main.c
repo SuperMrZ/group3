@@ -49,6 +49,8 @@ uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
 int8_t yaokongjishi=10;            //声明遥控器一直未接收到数据时的计数
 extern int16_t dipan_speedtarget[4];
 extern int16_t yuntai_angletarget[2];
+extern int16_t yuntai_speed_target[3];
+
 uint16_t a =50;
 uint16_t* bodan_target_angle = &a;
 
@@ -139,13 +141,9 @@ int main(void)
 	 dipan_speed_jiesuan(RC_Ctl);	
 	 dipan_gensui();
 
-	//  zhuangdan(bodan_target_angle);
+	  zhuangdan(bodan_target_angle,yuntai_speed_target);
 	  
-//CAN_cmd_current_3508motor(500,500,500,500);
-
-	//  CAN_cmd_current_yuntaimotor(300,0,0,0);
-	//  CAN_cmd_speed_yuntaimotor(target,motor_recieve_yuntai3508);
-	  //CAN_cmd_angle_yuntaimotor(target,motor_recieve_yuntai3508);
+	
 	  CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	
 	 HAL_Delay(2);
