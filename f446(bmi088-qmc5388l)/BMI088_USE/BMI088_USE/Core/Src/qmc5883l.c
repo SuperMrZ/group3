@@ -10,25 +10,41 @@ void QMC5883L_Init(void) {
 }
 
 // 读取QMC5883L的磁力计数据
-void QMC5883L_ReadData(int16_t* x, int16_t* y, int16_t* z) {
+void QMC5883L_ReadData(float * x, float * y, float * z) {
     uint8_t data[6];  // 定义数据数组，用于存放X, Y, Z轴数据
+	int16_t temp=0; 
     // 从QMC5883L读取6个字节的数据
     HAL_I2C_Mem_Read(&hi2c1, QMC5883L_ADDRESS << 1, X_REGISTER, 1, data, 6, HAL_MAX_DELAY);
     
     // 将读取的字节数据转换为整数
-    *x = (data[1] << 8) | data[0];  // 合并X轴的高低字节
-    *y = (data[3] << 8) | data[2];  // 合并Y轴的高低字节
-    *z = (data[5] << 8) | data[4];  // 合并Z轴的高低字节
+   
+	temp= (int16_t)((data[1] << 8) | data[0]);// 合并X轴的高低字节
+	*x = MAG_SEN *temp;
+    temp  = (int16_t)((data[3] << 8) | data[2]);  // 合并Y轴的高低字节
+	*y = MAG_SEN *temp;
+	temp  = (int16_t)((data[5] << 8) | data[4]);
+    *z =MAG_SEN * temp; // 合并Z轴的高低字节
 }
 
-//问题
+
+
+//问题:此函数读取到的磁力计数据不对
 void QMC5883L_ReadDATA(qmc5883l_raw_data_t *qmc5883l_data) {
     uint8_t data[6];  // 定义数据数组，用于存放X, Y, Z轴数据
+	int16_t tempx=0,tempy=0,tempz=0;  
     // 从QMC5883L读取6个字节的数据
     HAL_I2C_Mem_Read(&hi2c1, QMC5883L_ADDRESS << 1, X_REGISTER, 1, data, 6, HAL_MAX_DELAY);
     
     // 将读取的字节数据转换为整数
-    qmc5883l_data->x  = (data[1] << 8) | data[0];  // 合并X轴的高低字节
-    qmc5883l_data->y  = (data[3] << 8) | data[2];  // 合并Y轴的高低字节
-    qmc5883l_data->z  = (data[5] << 8) | data[4];  // 合并Z轴的高低字节
+    tempx  = (int16_t)((data[1] << 8) | data[0]);// 合并X轴的高低字节
+	qmc5883l_data->x = tempx;
+    tempy  = (int16_t)((data[3] << 8) | data[2]);  // 合并Y轴的高低字节
+	qmc5883l_data->y = tempy;
+	tempz  = (int16_t)((data[5] << 8) | data[4]);
+    qmc5883l_data->z = tempz; // 合并Z轴的高低字节
+	
+//	qmc5883l_data->x  = (data[1] << 8) | data[0];  // 合并X轴的高低字节
+//  qmc5883l_data->y  = (data[3] << 8) | data[2];  // 合并Y轴的高低字节
+//  qmc5883l_data->z  = (data[5] << 8) | data[4];  // 合并Z轴的高低字节
 }
+

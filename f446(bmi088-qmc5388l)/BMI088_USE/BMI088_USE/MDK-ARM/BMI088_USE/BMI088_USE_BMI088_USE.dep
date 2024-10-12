@@ -1,5 +1,5 @@
 Dependencies for Project 'BMI088_USE', Target 'BMI088_USE': (DO NOT MODIFY !)
-F (startup_stm32f446xx.s)(0x6708EDEF)(--cpu Cortex-M4.fp -g --apcs=interwork -I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "STM32F446xx SETA 1"--list startup_stm32f446xx.lst --xref -o bmi088_use\startup_stm32f446xx.o --depend bmi088_use\startup_stm32f446xx.d)
+F (startup_stm32f446xx.s)(0x6708F892)(--cpu Cortex-M4.fp -g --apcs=interwork -I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "STM32F446xx SETA 1"--list startup_stm32f446xx.lst --xref -o bmi088_use\startup_stm32f446xx.o --depend bmi088_use\startup_stm32f446xx.d)
 F (..\Core\Src\bmi088.c)(0x6701EADF)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\bmi088.o --omf_browse bmi088_use\bmi088.crf --depend bmi088_use\bmi088.d)
 I (../Core/Inc/bmi088.h)(0x6701EADF)
 I (D:\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
@@ -40,7 +40,42 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x66FA5DFF)
 I (../Core/Inc/spi.h)(0x6701EADF)
 F (..\Core\Inc\bmi088.h)(0x6701EADF)()
 F (..\Core\Inc\bmi088reg.h)(0x6701EADF)()
-F (../Core/Src/main.c)(0x6708ED04)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\main.o --omf_browse bmi088_use\main.crf --depend bmi088_use\main.d)
+F (..\Core\Src\qmc5883l.c)(0x6709197F)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\qmc5883l.o --omf_browse bmi088_use\qmc5883l.crf --depend bmi088_use\qmc5883l.d)
+I (../Core/Inc/qmc5883l.h)(0x670917CE)
+I (../Core/Inc/i2c.h)(0x6701EADF)
+I (../Core/Inc/main.h)(0x6707C308)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66FA5DFE)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6707C308)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x66FA5DFF)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x66FA5DFE)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h)(0x66FA5DFE)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x66FA5DC8)
+I (D:\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x66FA5DC8)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x66FA5DC8)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x66FA5DC8)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x66FA5DC8)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x66FA5DFE)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x66FA5DFE)
+I (D:\keil5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x66FA5DFE)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x66FA5DFF)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x66FA5DFF)
+F (..\Core\Inc\qmc5883l.h)(0x670917CE)()
+F (../Core/Src/main.c)(0x670919C1)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\main.o --omf_browse bmi088_use\main.crf --depend bmi088_use\main.d)
 I (../Core/Inc/main.h)(0x6707C308)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66FA5DFE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6707C308)
@@ -79,7 +114,8 @@ I (../Core/Inc/bmi088.h)(0x6701EADF)
 I (D:\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (../Core/Inc/bmi088reg.h)(0x6701EADF)
 I (D:\keil5\ARM\ARMCC\include\math.h)(0x588B8344)
-I (../Core/Inc/qmc5883l.h)(0x6707DED9)
+I (../Core/Inc/qmc5883l.h)(0x670917CE)
+I (../Core/Inc/MahonyAHRS.h)(0x67091B2D)
 F (../Core/Src/gpio.c)(0x6701EADF)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\gpio.o --omf_browse bmi088_use\gpio.crf --depend bmi088_use\gpio.d)
 I (../Core/Inc/gpio.h)(0x6701EADF)
 I (../Core/Inc/main.h)(0x6707C308)
@@ -244,8 +280,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h)(0x66FA5DFF)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x66FA5DFF)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x66FA5DFF)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x66FA5DFF)
-F (..\Core\Src\qmc5883l.c)(0x6707DF5F)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\qmc5883l.o --omf_browse bmi088_use\qmc5883l.crf --depend bmi088_use\qmc5883l.d)
-I (../Core/Inc/qmc5883l.h)(0x6707DED9)
+F (..\Core\Src\MahonyAHRS.c)(0x67091E5E)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\mahonyahrs.o --omf_browse bmi088_use\mahonyahrs.crf --depend bmi088_use\mahonyahrs.d)
+I (../Core/Inc/MahonyAHRS.h)(0x67091B2D)
+I (../Core/Inc/bmi088.h)(0x6701EADF)
+I (D:\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (D:\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (../Core/Inc/bmi088reg.h)(0x6701EADF)
+I (../Core/Inc/qmc5883l.h)(0x670917CE)
 I (../Core/Inc/i2c.h)(0x6701EADF)
 I (../Core/Inc/main.h)(0x6707C308)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66FA5DFE)
@@ -255,7 +296,6 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x66FA5DFF)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x66FA5DFE)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h)(0x66FA5DFE)
 I (../Drivers/CMSIS/Include/core_cm4.h)(0x66FA5DC8)
-I (D:\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (../Drivers/CMSIS/Include/cmsis_version.h)(0x66FA5DC8)
 I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x66FA5DC8)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x66FA5DC8)
@@ -278,8 +318,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h)(0x66FA5DFF)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x66FA5DFF)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x66FA5DFF)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x66FA5DFF)
-F (..\Core\Inc\qmc5883l.h)(0x6707DED9)()
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c)(0x6707D773)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\stm32f4xx_hal_i2c.o --omf_browse bmi088_use\stm32f4xx_hal_i2c.crf --depend bmi088_use\stm32f4xx_hal_i2c.d)
+I (D:\keil5\ARM\ARMCC\include\math.h)(0x588B8344)
+F (..\Core\Inc\MahonyAHRS.h)(0x67091B2D)()
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c)(0x66FA5DFF)(--c99 -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_BMI088_USE-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F446xx -DUSE_HAL_DRIVER -DSTM32F446xx-o bmi088_use\stm32f4xx_hal_i2c.o --omf_browse bmi088_use\stm32f4xx_hal_i2c.crf --depend bmi088_use\stm32f4xx_hal_i2c.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66FA5DFE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6707C308)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x66FA5DFF)

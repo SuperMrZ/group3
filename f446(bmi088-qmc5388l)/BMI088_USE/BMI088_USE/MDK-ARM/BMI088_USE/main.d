@@ -39,3 +39,4 @@ bmi088_use\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 bmi088_use\main.o: ../Core/Inc/bmi088reg.h
 bmi088_use\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h
 bmi088_use\main.o: ../Core/Inc/qmc5883l.h
+bmi088_use\main.o: ../Core/Inc/MahonyAHRS.h

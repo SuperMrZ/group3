@@ -28,6 +28,7 @@
 #include <math.h>
 #include "bmi088reg.h"
 #include "qmc5883l.h"
+#include "MahonyAHRS.h"
 //#include "ZiTai-jiesuan.h"
 
 
@@ -61,7 +62,11 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+  acc_raw_data_t acc_data;
+  gyro_raw_data_t gyro_raw_data;
+//  qmc5883l_raw_data_t qmc5883l_raw_data;
+  zitai_angle zitai;
+  float x, y, z;
 /* USER CODE END 0 */
 
 /**
@@ -99,10 +104,7 @@ int main(void)
   BMI088_CONF_INIT();
   QMC5883L_Init();
   
-  acc_raw_data_t acc_data;
-  gyro_raw_data_t gyro_raw_data;
-  qmc5883l_raw_data_t qmc5883l_raw_data;
-  int16_t x, y, z;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -112,11 +114,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	 ReadAccData(&acc_data); 
-	 ReadGyroData(&gyro_raw_data);
-     QMC5883L_ReadData(&x, &y, &z);  // 读取磁力计数据
-     QMC5883L_ReadDATA(&qmc5883l_raw_data);
-
+//   QMC5883L_ReadDATA(&qmc5883l_raw_data);
+     Read_Sensors(&acc_data, &gyro_raw_data,&x,&y,&z);
+	 Calculate_Angles(&zitai.roll, &zitai.pitch, &zitai.yaw);
 
   }
   
