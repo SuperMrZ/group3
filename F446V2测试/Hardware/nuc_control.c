@@ -8,7 +8,8 @@
 #define TxHeader 0x5A
 
 #define PI 3.1415926f
-#define SlowRatio  19.0f
+#define SlowRatio_3508  19.0f
+#define SlowRatio_2006  36.0f
 #define Radius 48.5f    //unit mm
 #define dipan_radius 233 //unit mm
 extern int16_t dipan_speedtarget[4];

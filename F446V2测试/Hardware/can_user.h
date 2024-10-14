@@ -32,7 +32,8 @@ void can_filter2_init(void);
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan);
 
-
+void CAN_cmd_current_shengmingqiumotor2006(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4);
+void CAN_cmd_speed_shengmingqiumotor2006_rpm(int16_t target, motor_recieve motor_recieve_info[1]);
 
 
 #endif

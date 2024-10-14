@@ -18,11 +18,15 @@
 extern motor_recieve motor_recieve_dipan3508[4];
 extern motor_recieve motor_recieve_yuntai6020[2];
 extern motor_recieve motor_recieve_yuntai3508[3];
+extern motor_recieve motor_recieve_shengmingqiu2006[1];
+
 extern PID pid_dipan3508[4];
 extern PID pid_yuntai6020[2];
 extern PID pid_yuntai6020_angle[2];
 extern PID pid_yuntai3508[3];
+extern PID pid_shengmingqiu2006[1];
 
+int16_t current_2006;
 
 
 
@@ -87,15 +91,21 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 		motor_recieve_dipan3508[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
 		motor_recieve_dipan3508[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
 	}
-	else if(rx_header.StdId >= 0x205)
+	else if(rx_header.StdId == 0x206)
 	{
 		int16_t i =rx_header.StdId -0x205;
 		motor_recieve_yuntai6020[i].motor_id=rx_header.StdId;
 		motor_recieve_yuntai6020[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
 		motor_recieve_yuntai6020[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
 	}
+	else if(rx_header.StdId==0x205)
+		{
+			motor_recieve_shengmingqiu2006[0].angle=(rx_data[0] << 8) |rx_data[1];
+			motor_recieve_shengmingqiu2006[0].speed=(rx_data[2] << 8) |rx_data[3];
+		}
+	
    // 可以根据具体情况解析更多数据字段
-    HAL_GPIO_WritePin(GPIOF,GPIO_PIN_14,GPIO_PIN_RESET);
+//    HAL_GPIO_WritePin(GPIOF,GPIO_PIN_14,GPIO_PIN_RESET);
     
 
 }
@@ -166,7 +176,7 @@ static uint8_t              yuntai6020_can_send_data[8];//要发送的数据数组
 void CAN_cmd_current_6020motor(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
 {
     uint32_t send_mail_box;
-    yuntai6020_tx_message.StdId = 0x1FE;//查阅C620手册，ID为1-4时发送标识为0x200
+    yuntai6020_tx_message.StdId = 0x1FE;//查阅6020手册，ID为1-4时发送标识为0x1FE
     yuntai6020_tx_message.IDE = CAN_ID_STD;
     yuntai6020_tx_message.RTR = CAN_RTR_DATA;
     yuntai6020_tx_message.DLC = 0x08;
@@ -301,13 +311,13 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 	
 
 		int16_t i =rx_header.StdId -0x201;
-		
+		if(0<=i && i<4)
+		{
 		motor_recieve_yuntai3508[i].motor_id=rx_header.StdId;
 		motor_recieve_yuntai3508[i].angle =(rx_data[0] << 8) |rx_data[1];// 示例：假设第一个字节和第二个字节为电机角度数据
 		motor_recieve_yuntai3508[i].speed= (rx_data[2] << 8) |rx_data[3];  // 示例：假设第三个字节为电机转速数据
-	
-	
-	
+		}
+		
 }
 
 
@@ -398,5 +408,49 @@ void CAN_cmd_angle_yuntaimotor(int16_t target[3], motor_recieve motor_recieve_in
 
 	CAN_cmd_speed_yuntaimotor(motor_speed ,motor_recieve_info);
 	//CAN_cmd_current_yuntaimotor(motor_speed[0],motor_speed[1],motor_speed[2],0);
+
+}
+
+
+/**
+  * @brief  CAN_cmd_current_shengmingqiumotor2006此函数用于控制生命球电机2006的输入电流
+  * @param  motor1-4指的是你想指定相应电机的电流输入值，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+static CAN_TxHeaderTypeDef  yuntai2006_tx_message;//发送数据的数据头
+static uint8_t              yuntai2006_can_send_data[8];//要发送的数据数组
+void CAN_cmd_current_shengmingqiumotor2006(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
+{
+    uint32_t send_mail_box;
+    yuntai2006_tx_message.StdId = 0x1FF;//查阅C610手册，ID为5-8时发送标识为0x1FF
+    yuntai2006_tx_message.IDE = CAN_ID_STD;
+    yuntai2006_tx_message.RTR = CAN_RTR_DATA;
+    yuntai2006_tx_message.DLC = 0x08;
+    yuntai2006_can_send_data[0] = motor1 >> 8; //id1电机 设置电流值高8位
+    yuntai2006_can_send_data[1] = motor1;      //id1电机 设置电流值低8位
+    yuntai2006_can_send_data[2] = motor2 >> 8; //id2电机 设置电流值高8位
+    yuntai2006_can_send_data[3] = motor2;      //id2电机 设置电流值低8位
+    yuntai2006_can_send_data[4] = motor3 >> 8;
+    yuntai2006_can_send_data[5] = motor3;
+    yuntai2006_can_send_data[6] = motor4 >> 8;
+    yuntai2006_can_send_data[7] = motor4;
+ 
+    HAL_CAN_AddTxMessage(&hcan1, &yuntai2006_tx_message, yuntai2006_can_send_data, &send_mail_box);
+}
+
+/**
+  * @brief  shengmingqiumotor2006此函数用于控制生命球电机2006的速度
+  * @param  motor1-4指的是你想指定相应电机的速度输出，类型为int_16形（后续应该修改）
+  * @retval 无
+  */
+
+
+void CAN_cmd_speed_shengmingqiumotor2006_rpm(int16_t target, motor_recieve motor_recieve_info[1])
+{
+	
+	 current_2006=pid_output(&pid_shengmingqiu2006[0], motor_recieve_info[0].speed, target*36.0);
+
+
+	CAN_cmd_current_shengmingqiumotor2006(current_2006,0,0,0);
 
 }

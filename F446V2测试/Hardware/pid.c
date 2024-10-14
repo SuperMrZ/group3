@@ -25,7 +25,15 @@ PID pid_dipan3508[4] = {
     {5, 0.15, 0, 0x1000, 0x5000, 0, 0,0,0},
     {5, 0.15, 0, 0x1000, 0x5000, 0, 0,0,0}
 };
+
+
 extern PID pid_dipan3508[4];
+
+PID pid_shengmingqiu2006[1]=
+{
+	{10,0.1,0, 2500, 5000, 0, 0,0  ,0}
+};
+extern PID pid_shengmingqiu2006[1];
 
  PID pid_yuntai6020[2] = {
     {5, 0.01, 0, 3000, 5000, 0, 0,0,0},

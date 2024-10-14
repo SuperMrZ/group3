@@ -71,6 +71,8 @@
 motor_recieve motor_recieve_dipan3508[4];
 motor_recieve motor_recieve_yuntai6020[2];
 motor_recieve motor_recieve_yuntai3508[3];
+motor_recieve motor_recieve_shengmingqiu2006[1];
+
 RC_Ctl_t RC_Ctl;   					//声明遥控器数据结构体
 uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
 int8_t yaokongjishi=10;            //声明遥控器一直未接收到数据时的计数
@@ -178,6 +180,7 @@ HAL_Delay(500);
 //	 dipan_gensui();
 	 Nuc_ctrl();
 	CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
+	CAN_cmd_speed_shengmingqiumotor2006_rpm(10,motor_recieve_shengmingqiu2006);
 //		Tx_data_to_Nuc();
 	 HAL_Delay(5);
 
