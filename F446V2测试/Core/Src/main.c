@@ -20,6 +20,8 @@
 #include "main.h"
 #include "can.h"
 #include "dma.h"
+#include "i2c.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -33,6 +35,15 @@
 #include "yaokong.h"
 #include "dipan_gensui.h"
 #include "bodan.h"
+#include "nuc_control.h"
+
+//#include "bmi088.h"
+//#include <math.h>
+//#include "bmi088reg.h"
+//#include "Mahony.h""
+//#include "qmc5883l.h"
+//#include "MahonyAHRS.h"
+#include "nuc_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,13 +65,16 @@
 
 /* USER CODE BEGIN PV */
 	uint8_t *Sa="djw";
-	
+	/**
+*dianji_yaokong
+*/
 motor_recieve motor_recieve_dipan3508[4];
 motor_recieve motor_recieve_yuntai6020[2];
 motor_recieve motor_recieve_yuntai3508[3];
 RC_Ctl_t RC_Ctl;   					//声明遥控器数据结构体
 uint8_t sbus_rx_buffer[18]; 		//声明遥控器接收缓存数组
 int8_t yaokongjishi=10;            //声明遥控器一直未接收到数据时的计数
+
 extern int16_t dipan_speedtarget[4];
 extern int16_t yuntai_angletarget[2];
 uint16_t a =50;
@@ -68,6 +82,25 @@ uint16_t* bodan_target_angle = &a;
 
 int16_t TongDao0 = 0;               //声明一个变量，用于一个通道调试
 
+
+//float p,r,y;
+/**
+*Nuc_tongxin
+*/
+
+
+
+
+
+/**
+*zitaijiesuan
+*/
+//	acc_raw_data_t acc_data;
+//  gyro_raw_data_t gyro_raw_data;
+//  zitai_angle zitai;
+//  float x, y, z;
+//	
+//	float headingangle_z;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -116,6 +149,8 @@ int main(void)
   MX_CAN2_Init();
   MX_USART3_UART_Init();
   MX_TIM2_Init();
+  MX_I2C1_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_CAN_Start(&hcan1);
@@ -125,8 +160,11 @@ int main(void)
 	
 		HAL_UARTEx_ReceiveToIdle_DMA(&huart3,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart3.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
-//	Can12_Start();
-	HAL_Delay(500);
+	
+	
+	
+Nuc_Tele_Init();
+HAL_Delay(500);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -136,19 +174,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		dipan_speed_jiesuan(RC_Ctl);	
-	 dipan_gensui();
-		
+//		dipan_speed_jiesuan(RC_Ctl);	
+//	 dipan_gensui();
+	 Nuc_ctrl();
 	CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
-	
-	 HAL_Delay(2);
-//		CAN_Set_c620_current(&hcan1,1, 0, 0, 0);
-//		CAN_Set_c620_current(&hcan2,1, 0, 0, 0);
-//		HAL_UART_Transmit(&huart2,Sa,sizeof(Sa),10);
-//		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-//		HAL_Delay(1000);
-//		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
-//			HAL_Delay(1000);
+//		Tx_data_to_Nuc();
+	 HAL_Delay(5);
+
+
   }
   /* USER CODE END 3 */
 }

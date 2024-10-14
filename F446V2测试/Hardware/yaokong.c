@@ -3,6 +3,9 @@
 #include "yaokong.h" 
 #include "tim.h"
 #include "can_user.h"
+#include "nuc_control.h"
+
+
 
 extern 	RC_Ctl_t RC_Ctl;
 
@@ -12,12 +15,18 @@ extern  uint16_t* bodan_target_angle;
 extern motor_recieve motor_recieve_yuntai3508[3];
 extern int16_t yuntai_speed_target[3];
 
+extern Nuc_manu_cmd Manu_Cmd;
+extern uint8_t Manu_Rx_buf[5*sizeof(float)+1];
+
+extern Nuc_auto_cmd Auto_Cmd;
+extern uint8_t Auto_Rx_buf[4*sizeof(float)+1];
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	
-	
-				yaokongjishi=10;
+	if(huart==&huart3)
+	{
+		yaokongjishi=10;
 				RC_Ctl.rc.s2_last = RC_Ctl.rc.s2;
         RC_Ctl.rc.ch0 = (sbus_rx_buffer[0]| (sbus_rx_buffer[1] << 8)) & 0x07ff;          
 				RC_Ctl.rc.ch1 = ((sbus_rx_buffer[1] >> 3) | (sbus_rx_buffer[2] << 5)) & 0x07ff;       
@@ -45,14 +54,22 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 				{
 					*bodan_target_angle +=8192*6;
 				}
-	
 				
-				HAL_UARTEx_ReceiveToIdle_DMA(&huart3,sbus_rx_buffer,18);	
+					HAL_UARTEx_ReceiveToIdle_DMA(&huart3,sbus_rx_buffer,18);	
 				__HAL_DMA_DISABLE_IT(huart3.hdmarx ,DMA_IT_HT );
 
-				
-	
-	}
+			}else if(huart==&huart2)
+			{
+				// Manu
+//				HAL_UARTEx_ReceiveToIdle_DMA(&huart2,Manu_Rx_buf,21);
+//				Nuc_Manu_Decode(Manu_Rx_buf,&Manu_Cmd);
+//			__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );
+				// Auto
+				HAL_UARTEx_ReceiveToIdle_DMA(&huart2,Auto_Rx_buf,17);
+				Nuc_Auto_Decode(Auto_Rx_buf,&Auto_Cmd);
+			__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );
+			}
+}
 
 	
 	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
