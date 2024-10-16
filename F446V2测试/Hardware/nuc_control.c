@@ -4,6 +4,7 @@
 #include "can_user.h"
 
 #define MANU 1
+#define AUTO 0
 #define RxHeader 0xA5
 #define TxHeader 0x5A
 
@@ -13,12 +14,13 @@
 #define Radius 48.5f    //unit mm
 #define dipan_radius 233 //unit mm
 extern int16_t dipan_speedtarget[4];
+extern int16_t yuntai_angletarget[2];
 
 float real_speedtarget[4];
 
 uint8_t err_flg=0;
 
-uint8_t mode_config=0;
+uint8_t mode_config=AUTO;
 // Tx of auto
 Tx_Data_toNuc Tx_Cmd;
 
@@ -30,10 +32,11 @@ uint8_t Manu_Rx_buf[5*sizeof(float)+1];
 // if auto copy this to main.c
 // Rx of auto
 Nuc_auto_cmd Auto_Cmd;
-uint8_t Auto_Rx_buf[4*sizeof(float)+1];
+//uint8_t Auto_Rx_buf[4*sizeof(float)+1];
+uint8_t Auto_Rx_buf[36];
 
 
-void Nuc_Tele_Init()
+void Nuc_Tele_Init() // 现在使用串口空闲中断
 {
 	if(mode_config==MANU)
 	{
@@ -43,10 +46,31 @@ void Nuc_Tele_Init()
 	else //auto
 	{
 		Tx_Cmd.header=TxHeader;
-		HAL_UARTEx_ReceiveToIdle_DMA(&huart2,Auto_Rx_buf,17);
-	__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
+		
+		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);  // 使能串口空闲中断
+	HAL_UART_Receive_DMA(&huart2, (uint8_t*)Auto_Rx_buf, 36);     //设置DMA传输，将串口1的数据搬运到buff中，每次255个字节       
 	}
 }
+
+void Nuc_Tele_CRC_Init();
+
+//// 以下为使用接受固定长字节的DMA接受中断版本，现已因稳定性废弃		
+
+//void Nuc_Tele_Init() // 现在使用串口空闲中断
+//{
+//	if(mode_config==MANU)
+//	{
+//	HAL_UARTEx_ReceiveToIdle_DMA(&huart2,Manu_Rx_buf,21);
+//	__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
+//	}
+//	else //auto
+//	{
+//		Tx_Cmd.header=TxHeader;      
+////	
+//		HAL_UARTEx_ReceiveToIdle_DMA(&huart2,&Auto_Rx_buf[0],17);
+//	__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
+//	}
+//}
 
 
 void Nuc_Manu_Decode(uint8_t* rx_buf, Nuc_manu_cmd* cmd)
@@ -59,6 +83,7 @@ void Nuc_Manu_Decode(uint8_t* rx_buf, Nuc_manu_cmd* cmd)
         memcpy(&(cmd->position_x), rx_buf + 9, sizeof(float)); // ?? position_x
         memcpy(&(cmd->position_y), rx_buf + 13, sizeof(float));// ?? position_y
         memcpy(&(cmd->shoot), rx_buf + 17, sizeof(float));     // ?? shoot
+				
     }
     else
     {
@@ -66,20 +91,22 @@ void Nuc_Manu_Decode(uint8_t* rx_buf, Nuc_manu_cmd* cmd)
     }
 }
 
-void Nuc_Auto_Decode(uint8_t* rx_buf, Nuc_auto_cmd* cmd)
+
+void Nuc_Auto_Decode(uint8_t* rx_buf, Nuc_auto_cmd* cmd,uint8_t data_length)
 {
-	 if (rx_buf[0] == 0xA5)
+	 if (rx_buf[0] == 0xA5&&data_length==17)
     {
         cmd->header = rx_buf[0]; 
         memcpy(&(cmd->angle_error), rx_buf + 1, sizeof(float));      // ?? pitch
         memcpy(&(cmd->linear_speed), rx_buf + 5, sizeof(float));        // ?? yaw
         memcpy(&(cmd->yaw_flag), rx_buf + 9, sizeof(float)); // ?? position_x
         memcpy(&(cmd->pitch_flag), rx_buf + 13, sizeof(float));// ?? position_y
-			
+				err_flg=0;
     }
     else
     {
 			err_flg=1;
+			
     }
 }
 
@@ -123,7 +150,7 @@ void Nuc_ctrl()
 	{
 		if(Auto_Cmd.yaw_flag==1)
 		{
-			Motion_transverse(0,-0.1);
+			Motion_transverse(0,-0.2);
 			real_to_dipan();
 		}
 		else

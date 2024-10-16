@@ -27,4 +27,5 @@ f446v1.1/usart.o: ..\Core\Src\usart.c ..\Core\Inc\usart.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
-  D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h
+  D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
+  ..\Hardware\nuc_control.h

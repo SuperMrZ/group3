@@ -43,7 +43,7 @@ extern PID pid_yuntai6020[2];
  
 PID pid_yuntai6020_angle[2] = {
     {5, 0.01, 0, 8000, 8000, 0, 0,0,0},
-    {5, 0.01, 0, 8000, 8000, 0, 0,0,0}
+    {3, 0.05, 0, 8000, 8000, 0, 0,0,0}
 };
 
 extern PID pid_yuntai6020_angle[2];

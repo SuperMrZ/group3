@@ -1,4 +1,5 @@
-f446v1.1/stm32f4xx_it.o: ..\Core\Src\stm32f4xx_it.c ..\Core\Inc\main.h \
+f446v1.1/ws2812.o: ..\Hardware\WS2812.c ..\Hardware\WS2812.h \
+  ..\Core\Inc\main.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
@@ -27,4 +28,4 @@ f446v1.1/stm32f4xx_it.o: ..\Core\Src\stm32f4xx_it.c ..\Core\Inc\main.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  ..\Core\Inc\stm32f4xx_it.h ..\Core\Inc\usart.h
+  ..\Core\Inc\tim.h

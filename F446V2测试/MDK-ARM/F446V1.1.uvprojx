@@ -1011,6 +1011,16 @@
               <FileType>5</FileType>
               <FilePath>..\Hardware\auto_control.h</FilePath>
             </File>
+            <File>
+              <FileName>WS2812.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\WS2812.c</FilePath>
+            </File>
+            <File>
+              <FileName>WS2812.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\WS2812.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

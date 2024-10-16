@@ -21,7 +21,8 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "string.h"
+#include "nuc_control.h"
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart2;
@@ -131,6 +132,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 
     __HAL_LINKDMA(uartHandle,hdmarx,hdma_usart2_rx);
 
+    /* USART2 interrupt Init */
+    HAL_NVIC_SetPriority(USART2_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspInit 1 */
 
   /* USER CODE END USART2_MspInit 1 */
@@ -199,6 +203,9 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
     /* USART2 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmarx);
+
+    /* USART2 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspDeInit 1 */
 
   /* USER CODE END USART2_MspDeInit 1 */
@@ -226,5 +233,42 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+void USER_UART_IRQHandler(UART_HandleTypeDef *huart)
+{	// 判断是否是串口1
+    if(USART2 == huart2.Instance)                                   
+    {	// 判断是否是空闲中断
+        if(RESET != __HAL_UART_GET_FLAG(&huart2, UART_FLAG_IDLE))   	
+        {	 // 清除空闲中断标志（否则会一直不断进入中断）
+            __HAL_UART_CLEAR_IDLEFLAG(&huart2);                    
+            
+            // 调用中断处理函数
+            USAR_UART_IDLECallback(huart);                          
+        }
+    }
+}
+
+extern uint8_t Auto_Rx_buf[36];       
+extern Nuc_auto_cmd Auto_Cmd;
+void USAR_UART_IDLECallback(UART_HandleTypeDef *huart)
+{
+	// 停止本次DMA传输
+    HAL_UART_DMAStop(&huart2);  
+                                                       
+    // 计算接收到的数据长度
+    uint8_t data_length  = 36 - __HAL_DMA_GET_COUNTER(&hdma_usart2_rx);   
+    
+	// 测试函数：将接收到的数据打印出去
+//    printf("Receive Data(length = %d): ",data_length);
+//    HAL_UART_Transmit(&huart2,Auto_Rx_buf,data_length,0x200);                     
+//    printf("\r\n");
+		Nuc_Auto_Decode(Auto_Rx_buf,&Auto_Cmd,data_length);
+    
+	// 清零接收缓冲区
+    memset(Auto_Rx_buf,0,data_length);                                            
+    data_length = 0;
+    
+    // 重启开始DMA传输 每次255字节数据
+    HAL_UART_Receive_DMA(&huart2, (uint8_t*)Auto_Rx_buf, 36);                    
+}
 
 /* USER CODE END 1 */

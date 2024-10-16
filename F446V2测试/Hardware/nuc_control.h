@@ -31,9 +31,10 @@ typedef struct
 } Nuc_auto_cmd;
 
 void Nuc_Tele_Init();
+void Nuc_Tele_CRC_Init();
 
 void Nuc_Manu_Decode(uint8_t* rx_buf,Nuc_manu_cmd* cmd);
-void Nuc_Auto_Decode(uint8_t* rx_buf, Nuc_auto_cmd* cmd);
+void Nuc_Auto_Decode(uint8_t* rx_buf, Nuc_auto_cmd* cmd,uint8_t data_length);
 
 void Tx_data_to_Nuc(void);
 

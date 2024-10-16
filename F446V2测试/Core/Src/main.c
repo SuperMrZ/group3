@@ -44,6 +44,7 @@
 //#include "qmc5883l.h"
 //#include "MahonyAHRS.h"
 #include "nuc_control.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -84,6 +85,7 @@ uint16_t* bodan_target_angle = &a;
 
 int16_t TongDao0 = 0;               //声明一个变量，用于一个通道调试
 
+int16_t m6020_target[2];
 
 //float p,r,y;
 /**
@@ -153,6 +155,7 @@ int main(void)
   MX_TIM2_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_CAN_Start(&hcan1);
@@ -167,6 +170,7 @@ int main(void)
 	
 Nuc_Tele_Init();
 HAL_Delay(500);
+m6020_target[0]=0;m6020_target[1]=7000;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -180,9 +184,13 @@ HAL_Delay(500);
 //	 dipan_gensui();
 	 Nuc_ctrl();
 	CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
-	CAN_cmd_speed_shengmingqiumotor2006_rpm(10,motor_recieve_shengmingqiu2006);
+	CAN_cmd_speed_shengmingqiumotor2006_rpm(0,motor_recieve_shengmingqiu2006);
+//		CAN_cmd_speed_shengmingqiumotor2006_rpm(0,motor_recieve_shengmingqiu2006);
+		
 //		Tx_data_to_Nuc();
-	 HAL_Delay(5);
+	 HAL_Delay(2);
+		CAN_cmd_angle_6020motor(m6020_target,motor_recieve_yuntai6020);
+
 
 
   }

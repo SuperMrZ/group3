@@ -19,7 +19,8 @@ extern Nuc_manu_cmd Manu_Cmd;
 extern uint8_t Manu_Rx_buf[5*sizeof(float)+1];
 
 extern Nuc_auto_cmd Auto_Cmd;
-extern uint8_t Auto_Rx_buf[4*sizeof(float)+1];
+//extern uint8_t Auto_Rx_buf[4*sizeof(float)+1];
+extern uint8_t Auto_Rx_buf[36];
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
@@ -65,28 +66,28 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 //				Nuc_Manu_Decode(Manu_Rx_buf,&Manu_Cmd);
 //			__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );
 				// Auto
-				HAL_UARTEx_ReceiveToIdle_DMA(&huart2,Auto_Rx_buf,17);
-				Nuc_Auto_Decode(Auto_Rx_buf,&Auto_Cmd);
-			__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );
+//				HAL_UARTEx_ReceiveToIdle_DMA(&huart2,&Auto_Rx_buf[0],17);
+//				Nuc_Auto_Decode(Auto_Rx_buf,&Auto_Cmd,17);
+//			__HAL_DMA_DISABLE_IT(huart2.hdmarx ,DMA_IT_HT );
 			}
 }
 
 	
-	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
+//	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{
 
-    if (htim == (&htim2))
-    {
-        yaokongjishi--;
-		if(yaokongjishi<=0)
-		{
-			RC_Ctl.rc.ch0=1024;
-			RC_Ctl.rc.ch1=1024;
-			RC_Ctl.rc.ch2=1024;
-			RC_Ctl.rc.ch3=1024;
-			RC_Ctl.rc.s1=3;
-			RC_Ctl.rc.s2=3;
+//    if (htim == (&htim2))
+//    {
+////        yaokongjishi--;
+////		if(yaokongjishi<=0)
+////		{
+////			RC_Ctl.rc.ch0=1024;
+////			RC_Ctl.rc.ch1=1024;
+////			RC_Ctl.rc.ch2=1024;
+////			RC_Ctl.rc.ch3=1024;
+////			RC_Ctl.rc.s1=3;
+////			RC_Ctl.rc.s2=3;
 
-		}
-    }
-}
+////		}
+//    }
+//}
