@@ -44,7 +44,7 @@
 //#include "qmc5883l.h"
 //#include "MahonyAHRS.h"
 #include "nuc_control.h"
-
+#include "auto_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -86,7 +86,10 @@ uint16_t* bodan_target_angle = &a;
 int16_t TongDao0 = 0;               //声明一个变量，用于一个通道调试
 
 int16_t m6020_target[2];
+int16_t m2006_target_speed=0;
+uint8_t flag;
 
+uint8_t life_ball_num=3;
 //float p,r,y;
 /**
 *Nuc_tongxin
@@ -166,10 +169,13 @@ int main(void)
 		HAL_UARTEx_ReceiveToIdle_DMA(&huart3,sbus_rx_buffer,18);
 	__HAL_DMA_DISABLE_IT(huart3.hdmarx ,DMA_IT_HT );  //防止接收到一半就停止，跟上一句一定要配套写
 	
-	
-	
+	  
+
 Nuc_Tele_Init();
+LLC_Init();
+//HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
 HAL_Delay(500);
+
 m6020_target[0]=0;m6020_target[1]=7000;
   /* USER CODE END 2 */
 
@@ -184,14 +190,14 @@ m6020_target[0]=0;m6020_target[1]=7000;
 //	 dipan_gensui();
 	 Nuc_ctrl();
 	CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
-	CAN_cmd_speed_shengmingqiumotor2006_rpm(0,motor_recieve_shengmingqiu2006);
-//		CAN_cmd_speed_shengmingqiumotor2006_rpm(0,motor_recieve_shengmingqiu2006);
+	CAN_cmd_speed_shengmingqiumotor2006_rpm(m2006_target_speed,motor_recieve_shengmingqiu2006);
+	CAN_cmd_angle_6020motor(m6020_target,motor_recieve_yuntai6020);
+		
 		
 //		Tx_data_to_Nuc();
 	 HAL_Delay(2);
-		CAN_cmd_angle_6020motor(m6020_target,motor_recieve_yuntai6020);
-
-
+	
+// flag = HAL_GPIO_ReadPin(ADC_IN2_GPIO_Port,ADC_IN2_Pin)+HAL_GPIO_ReadPin(ADC_IN1_GPIO_Port,ADC_IN1_Pin)+ HAL_GPIO_ReadPin(IO4_GPIO_Port,IO4_Pin);
 
   }
   /* USER CODE END 3 */

@@ -18,6 +18,7 @@ typedef struct
 	uint8_t header;
 	float yaw_yuntai;
 	float pitch_yuntai;
+	float homeornot;
 } Tx_Data_toNuc;
 
 typedef struct 
@@ -42,6 +43,7 @@ void real_to_dipan();
 void Motion_transverse(float linearspeed,float anglespeed);
 
 void Nuc_ctrl();
-void Nuc_data_limit();
+void Nuc_data_limit(float linear_limit,float angle_limit);
+float code_to_hudu_6020(uint16_t* encoder_num);
 
 #endif

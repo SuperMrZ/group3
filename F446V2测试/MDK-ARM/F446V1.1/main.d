@@ -32,4 +32,4 @@ f446v1.1/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Core\Inc\gpio.h ..\Hardware\can_user.h ..\Hardware\pid.h \
   ..\Hardware\dipan_control.h ..\Hardware\yaokong.h \
   ..\Hardware\dipan_gensui.h ..\Hardware\bodan.h \
-  ..\Hardware\nuc_control.h
+  ..\Hardware\nuc_control.h ..\Hardware\auto_control.h

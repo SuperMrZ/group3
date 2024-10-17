@@ -262,6 +262,7 @@ void USAR_UART_IDLECallback(UART_HandleTypeDef *huart)
 //    HAL_UART_Transmit(&huart2,Auto_Rx_buf,data_length,0x200);                     
 //    printf("\r\n");
 		Nuc_Auto_Decode(Auto_Rx_buf,&Auto_Cmd,data_length);
+		Tx_data_to_Nuc();
     
 	// 清零接收缓冲区
     memset(Auto_Rx_buf,0,data_length);                                            
