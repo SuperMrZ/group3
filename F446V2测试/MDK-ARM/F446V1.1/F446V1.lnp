@@ -41,6 +41,7 @@
 "f446v1.1\nuc_control.o"
 "f446v1.1\auto_control.o"
 "f446v1.1\ws2812.o"
+"f446v1.1\crc.o"
 --strict --scatter "F446V1.1\F446V1.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

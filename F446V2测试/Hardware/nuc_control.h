@@ -24,7 +24,7 @@ typedef struct
 typedef struct 
 {
 	uint8_t header;
-	float angle_error;
+	float angle_speed;
 	float linear_speed;
 	float pitch_flag;
 	float yaw_flag;

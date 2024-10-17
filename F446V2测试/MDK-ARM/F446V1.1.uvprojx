@@ -1021,6 +1021,16 @@
               <FileType>5</FileType>
               <FilePath>..\Hardware\WS2812.h</FilePath>
             </File>
+            <File>
+              <FileName>crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\crc.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

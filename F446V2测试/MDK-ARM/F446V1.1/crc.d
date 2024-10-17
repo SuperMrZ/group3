@@ -1,5 +1,4 @@
-f446v1.1/usart.o: ..\Core\Src\usart.c ..\Core\Inc\usart.h \
-  ..\Core\Inc\main.h \
+f446v1.1/crc.o: ..\Hardware\crc.c ..\Hardware\crc.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
@@ -27,5 +26,4 @@ f446v1.1/usart.o: ..\Core\Src\usart.c ..\Core\Inc\usart.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
-  D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  ..\Hardware\nuc_control.h ..\Hardware\crc.h
+  D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h

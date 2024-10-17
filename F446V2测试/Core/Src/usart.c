@@ -23,6 +23,7 @@
 /* USER CODE BEGIN 0 */
 #include "string.h"
 #include "nuc_control.h"
+#include "crc.h"
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart2;
@@ -249,6 +250,7 @@ void USER_UART_IRQHandler(UART_HandleTypeDef *huart)
 
 extern uint8_t Auto_Rx_buf[36];       
 extern Nuc_auto_cmd Auto_Cmd;
+
 void USAR_UART_IDLECallback(UART_HandleTypeDef *huart)
 {
 	// 停止本次DMA传输
@@ -263,7 +265,8 @@ void USAR_UART_IDLECallback(UART_HandleTypeDef *huart)
 //    printf("\r\n");
 		Nuc_Auto_Decode(Auto_Rx_buf,&Auto_Cmd,data_length);
 		Tx_data_to_Nuc();
-    
+	
+
 	// 清零接收缓冲区
     memset(Auto_Rx_buf,0,data_length);                                            
     data_length = 0;

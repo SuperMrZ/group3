@@ -27,7 +27,17 @@ Project File Date:  10/17/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.22', folder: 'D:\Code_Constructor\Keil\Core\ARM\ARMCLANG\Bin'
 Build target 'F446V1.1'
-"F446V1.1\F446V1.1" - 0 Error(s), 0 Warning(s).
+compiling auto_control.c...
+compiling nuc_control.c...
+../Core/Src/main.c(68): warning: initializing 'uint8_t *' (aka 'unsigned char *') with an expression of type 'char[4]' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+   68 |         uint8_t *Sa="djw";
+      |                  ^  ~~~~~
+1 warning generated.
+compiling main.c...
+linking...
+Program Size: Code=32468 RO-data=812 RW-data=784 ZI-data=2800  
+FromELF: creating hex file...
+"F446V1.1\F446V1.1" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -51,7 +61,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

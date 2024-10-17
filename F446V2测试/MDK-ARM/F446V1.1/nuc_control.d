@@ -29,4 +29,4 @@ f446v1.1/nuc_control.o: ..\Hardware\nuc_control.c \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   D:\Code_Constructor\CubeMX\Firmware_Library\STM32Cube_FW_F4_V1.28.1\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
   ..\Core\Inc\usart.h ..\Core\Inc\main.h ..\Hardware\can_user.h \
-  ..\Hardware\auto_control.h
+  ..\Hardware\auto_control.h ..\Hardware\crc.h

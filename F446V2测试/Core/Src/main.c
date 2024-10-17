@@ -192,9 +192,6 @@ m6020_target[0]=0;m6020_target[1]=7000;
 	CAN_cmd_speed_3508motor(dipan_speedtarget,motor_recieve_dipan3508);
 	CAN_cmd_speed_shengmingqiumotor2006_rpm(m2006_target_speed,motor_recieve_shengmingqiu2006);
 	CAN_cmd_angle_6020motor(m6020_target,motor_recieve_yuntai6020);
-		
-		
-//		Tx_data_to_Nuc();
 	 HAL_Delay(2);
 	
 // flag = HAL_GPIO_ReadPin(ADC_IN2_GPIO_Port,ADC_IN2_Pin)+HAL_GPIO_ReadPin(ADC_IN1_GPIO_Port,ADC_IN1_Pin)+ HAL_GPIO_ReadPin(IO4_GPIO_Port,IO4_Pin);

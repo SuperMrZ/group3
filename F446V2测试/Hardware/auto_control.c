@@ -33,11 +33,14 @@ void Generate_sine(float period,float up,float down,int16_t* output)
 	i %=(int16_t)(TIMHz*period);
 }
 
-//void pitch_period_motion(int16_t &m6020[2])
-//{
-//	
-//}
-
+// Dead_flg：死没死过
+// Work_state:工作状态 工作/回家/死亡
+/*
+* 生命球初始化与逻辑状态初始化
+* 
+*	Work_State为全局使用的逻辑标志位，宏定义见auto_control.h
+* 
+*/
 void LLC_Init()
 {
 //	memset(lifestate,1,3);
@@ -45,6 +48,12 @@ void LLC_Init()
 	Work_State=GoWork;
 }
 
+/*
+* 剩余生命球数量检测
+* 
+*	
+* 
+*/
 uint8_t Left_lifeball_check()
 {
 //	lifestate[0] = HAL_GPIO_ReadPin(ADC_IN2_GPIO_Port,ADC_IN2_Pin);
@@ -76,6 +85,12 @@ uint8_t Left_lifeball_check()
 
 // Dead_flg：死没死过
 // Work_state:工作状态 工作/回家/死亡
+/*
+* 生命球逻辑判断
+* 
+*	读取生命球数据并更新Work_State
+* 
+*/
 void Auto_Logic_ctrl()
 {
 	 if(Work_State==GoWork)
@@ -111,6 +126,12 @@ void Auto_Logic_ctrl()
 			}
 	 }
 }
+/*
+* 判断是否需要回家
+* 
+*	用于发送数据给nuc
+* 
+*/
 float GoHome_judge()
 {
 	if(Work_State!=GoWork)
@@ -119,6 +140,13 @@ float GoHome_judge()
 	}
 			return 0.0f;
 }
+
+/*
+* 定时回调函数
+* 10ms调用一次，自动重装填
+*	用于生命球检测，逻辑判断与产生6020点头用的正弦波
+* 
+*/
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 
@@ -127,7 +155,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			Generate_sine(2,7200,6700,&output6020);
 			Left_lifeball_check();
 			Auto_Logic_ctrl();
-//			Tx_data_to_Nuc();
 		}
     
 }
